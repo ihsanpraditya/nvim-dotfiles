@@ -1,5 +1,5 @@
 local dracula = require("dracula")
-dracula.setup({
+dracula.setup{
   -- customize dracula color palette
   colors = {
     bg = "#282A36",
@@ -40,4 +40,4 @@ dracula.setup({
     -- NvimTreeIndentMarker = { link = "NonText" }, -- link to NonText highlight
     -- Nothing = {} -- clear highlight of Nothing
   },
-})
+}

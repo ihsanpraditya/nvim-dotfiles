@@ -1,10 +1,11 @@
 -- With context indent highlighted by treesitter
+
 vim.opt.list = true
-vim.opt.listchars:append "eol:↴"
 
 require("indent_blankline").setup {
     show_current_context = true,
     show_current_context_start = true,
+    filetype_exclude = { "dashboard", "help" }
 }
 -- With custom background highlighted
 --vim.opt.termguicolors = true

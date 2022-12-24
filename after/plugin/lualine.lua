@@ -1,3 +1,6 @@
+local function time()
+    return vim.fn.strftime("%H:%M:%S")
+end
 require('lualine').setup {
   options = {
     icons_enabled = true,
@@ -23,7 +26,7 @@ require('lualine').setup {
     lualine_c = {'filename'},
     lualine_x = {'encoding', 'fileformat', 'filetype'},
     lualine_y = {'progress'},
-    lualine_z = {'location'}
+    lualine_z = {'location', time }
   },
   inactive_sections = {
     lualine_a = {},
@@ -38,3 +41,5 @@ require('lualine').setup {
   inactive_winbar = {},
   extensions = {}
 }
+
+require('lualine').get_config()
