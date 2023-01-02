@@ -15,6 +15,7 @@ op.undofile = true
 
 op.incsearch = true
 op.hlsearch = true
+op.cursorline = true
 
 op.scrolloff = 8
 op.signcolumn = "yes"
@@ -22,4 +23,7 @@ op.isfname:append("@-@")
 
 op.updatetime = 50
 
-op.colorcolumn = "80"
+-- op.colorcolumn = "80" -- show vertical line in column 80
+
+-- settings for directory mode
+vim.g.netrw_bufsettings = "noma nomod nonu nobl nowrap ro rnu"

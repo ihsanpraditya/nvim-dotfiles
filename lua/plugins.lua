@@ -1,7 +1,12 @@
+-- plugin with 'require' option also installs its requirement
+-- so you don't have to type it anymore
+
 return require('packer').startup(function(use)
     -- Packer can manage itself
     use 'wbthomason/packer.nvim'
 
+    --  Speed up loading Lua modules
+    use 'lewis6991/impatient.nvim'
     -- Fuzzy Finder
     use {
         'nvim-telescope/telescope.nvim', tag = '0.1.0',
@@ -12,15 +17,7 @@ return require('packer').startup(function(use)
     -- Icons in Directory view(like Dired mode, telescope view)
     use 'nvim-tree/nvim-web-devicons'
 
-    -- Nvim Treesitter
-    use {
-        'nvim-treesitter/nvim-treesitter',
-        run = ':TSUpdate'
-    }
-    use 'nvim-treesitter/playground'
-    use 'p00f/nvim-ts-rainbow' -- parenttheses colouring with treesitter
-
-    -- Colorscheme
+        -- Colorscheme
     use {'rose-pine/neovim', as = 'rose-pine'}
     use 'Mofiqul/dracula.nvim'
     use 'EdenEast/nightfox.nvim'
@@ -33,12 +30,19 @@ return require('packer').startup(function(use)
     use 'terrortylor/nvim-comment'
 
     -- Editing
-    use 'mbbill/undotree' -- Undo History Menu
+    use 'mbbill/undotree' -- Undo History Menu and increase it
     use 'folke/which-key.nvim' -- popup for available key
     use 'windwp/nvim-autopairs'
+    use {'mg979/vim-visual-multi', branch = 'master'}
+    use 'tpope/vim-fugitive' -- Git Support for Neovim
+    use {
+        'nvim-treesitter/nvim-treesitter', -- Syntax Checking
+        run = ':TSUpdate'
+    }
+    use 'nvim-treesitter/playground'
+    use 'p00f/nvim-ts-rainbow' -- parenttheses colouring with treesitter
+    use 'nvim-orgmode/orgmode'
 
-    -- Git Support for Neovim
-    use 'tpope/vim-fugitive'
 
     -- LSP
     use {
