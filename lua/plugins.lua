@@ -25,7 +25,10 @@ return require('packer').startup(function(use)
     use 'EdenEast/nightfox.nvim'
 
     -- Appearance
-    use 'glepnir/dashboard-nvim'
+    use {
+        'glepnir/dashboard-nvim',
+        event = 'VimEnter'
+    }
     use 'lukas-reineke/indent-blankline.nvim' -- indent line
     use {'akinsho/bufferline.nvim', tag = "v3.*"} -- buffer/tab bar
     use 'nvim-lualine/lualine.nvim' -- status bar
