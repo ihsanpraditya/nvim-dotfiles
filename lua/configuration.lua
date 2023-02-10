@@ -11,7 +11,6 @@ op.expandtab = true
 
 op.swapfile = false
 op.backup = false
-op.undodir = os.getenv("HOME") .. "/.vim/undodir"
 op.undofile = true
 
 op.incsearch = true

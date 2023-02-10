@@ -35,7 +35,6 @@ return require('packer').startup(function(use)
     use 'terrortylor/nvim-comment'
 
     -- Editing
-    use 'mbbill/undotree' -- Undo History Menu and increase it
     use 'folke/which-key.nvim' -- popup for available key
     use 'windwp/nvim-autopairs'
     use {'mg979/vim-visual-multi', branch = 'master'}
