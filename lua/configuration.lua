@@ -2,6 +2,7 @@ local op = vim.opt
 
 op.number = true
 op.relativenumber = true
+op.wrap = false
 
 op.tabstop = 4
 op.shiftwidth = 4
@@ -20,6 +21,9 @@ op.cursorline = true
 op.scrolloff = 8
 op.signcolumn = "yes"
 op.isfname:append("@-@")
+
+vim.opt.conceallevel = 2
+vim.opt.concealcursor = 'nc'
 
 op.updatetime = 50
 

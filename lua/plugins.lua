@@ -7,6 +7,7 @@ return require('packer').startup(function(use)
 
     --  Speed up loading Lua modules
     use 'lewis6991/impatient.nvim'
+
     -- Fuzzy Finder
     use {
         'nvim-telescope/telescope.nvim', tag = '0.1.0',
@@ -14,10 +15,11 @@ return require('packer').startup(function(use)
         requires = { {'nvim-lua/plenary.nvim'} } -- Asynchronous programming using coroutines
     }
     use 'nvim-telescope/telescope-file-browser.nvim'
+
     -- Icons in Directory view(like Dired mode, telescope view)
     use 'nvim-tree/nvim-web-devicons'
 
-        -- Colorscheme
+    -- Colorscheme
     use {'rose-pine/neovim', as = 'rose-pine'}
     use 'Mofiqul/dracula.nvim'
     use 'EdenEast/nightfox.nvim'
@@ -42,7 +44,13 @@ return require('packer').startup(function(use)
     use 'nvim-treesitter/playground'
     use 'p00f/nvim-ts-rainbow' -- parenttheses colouring with treesitter
     use 'nvim-orgmode/orgmode'
-
+    use {
+        "aurum77/live-server.nvim",
+        run = function()
+            require"live_server.util".install()
+        end,
+        cmd = { "LiveServer", "LiveServerStart", "LiveServerStop" },
+    }
 
     -- LSP
     use {
