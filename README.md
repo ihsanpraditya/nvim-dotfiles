@@ -5,12 +5,15 @@ I put a little code in my init.lua, then I imported lua files at lua folder as w
 My remap or binding keys is there too, but binding for plugins is located at `after/plugin/`. There also plugins configuration and options.
 
 **Important!**  
-1. If you have been using nvim, backup your nvim folder before installation. If you want to uninstall Neovim firstly, you may refer to [here](https://github.com/neovim/neovim/wiki/Installing-Neovim#uninstall).
-2. You have to install [Packer](https://github.com/wbthomason/packer.nvim#quickstart) manually.
+If you have been using nvim, backup your nvim folder before installation. If you want to uninstall Neovim firstly, you may refer to [here](https://github.com/neovim/neovim/wiki/Installing-Neovim#uninstall).
+
+**Prerequisite**  
+1. [Packer](https://github.com/wbthomason/packer.nvim#quickstart).
+2. [NodeJS](https://github.com/nodejs/node#download)
 
 **Installation**  
-1. clone this repo to your Neovim configuration folder.
-2. Install Packer.
+1. Install prerequisites, you may use [NVM](https://github.com/nvm-sh/nvm#node-version-manager---) for it.
+2. Clone this repo to your Neovim configuration folder.
 3. Open Neovim to install plugins. You may get some errors, just leave it.
 4. After plugins installation, you may restart Neovim (recomended) or start using it.
 
