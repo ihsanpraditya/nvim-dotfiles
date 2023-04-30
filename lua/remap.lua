@@ -55,3 +55,10 @@ vim.keymap.set( "n", "<leader>b", ':Telescope file_browser<CR>')
 -- vim.keymap.set('n', '<leader>fx', function()
 -- 	builtin.grep_string({ search = vim.fn.input("Grep > ") })
 -- end)
+
+-- for Neovide
+if vim.g.neovide then
+    vim.keymap.set("n", "<D-v>", '"+p')
+    vim.keymap.set("n", "<D-c>", '"+y')
+    vim.keymap.set("v", "<D-c>", '"+y')
+end

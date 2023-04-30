@@ -1,6 +1,6 @@
 -- plugin with 'require' option also installs its requirement
 -- so you don't have to type it anymore
-
+vim.cmd [[packadd packer.nvim]]
 return require('packer').startup(function(use)
     -- Packer can manage itself
     use 'wbthomason/packer.nvim'
@@ -25,7 +25,7 @@ return require('packer').startup(function(use)
     use 'EdenEast/nightfox.nvim'
 
     -- Appearance
-    use { 'glepnir/dashboard-nvim', event = 'VimEnter' , config = function() require('dashboard') end}
+    use { 'glepnir/dashboard-nvim', event = 'VimEnter' , config = function() require('dashboard').setup() end}
     use 'lukas-reineke/indent-blankline.nvim' -- indent line
     use {'akinsho/bufferline.nvim', tag = "v3.*"} -- buffer/tab bar
     use 'nvim-lualine/lualine.nvim' -- status bar

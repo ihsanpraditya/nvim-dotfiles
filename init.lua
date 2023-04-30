@@ -1,9 +1,10 @@
+-- all required files at lua folder
+require("colors")
 require("plugins")
 require("remap")
 
--- plugin configuration is at after/plugins/
-
--- Neovim Configuration
+-- ###############################################################################
+-- NEOVIM CONFIGURATION
 local op = vim.opt
 
 -- number
@@ -43,3 +44,23 @@ op.updatetime = 50
 
 -- Directory mode
 vim.g.netrw_bufsettings = "noma nomod nonu nobl nowrap ro rnu"
+
+-- ###############################################################################
+-- JUST FOR NEOVIDE NEOVIM DESKTOP CLIENT
+if vim.g.neovide then
+
+vim.g.neovide_transparency = 0.8
+vim.g.transparency = 0.0
+
+-- Floating Blur Amount
+vim.g.neovide_floating_blur_amount_x = 2.0
+vim.g.neovide_floating_blur_amount_y = 2.0
+
+-- Hiding the mouse when typing
+vim.g.neovide_hide_mouse_when_typing = true
+
+-- Remember Previous Window Size
+vim.g.neovide_remember_window_size = true
+
+end --end for Neovide configuration
+-- ###############################################################################

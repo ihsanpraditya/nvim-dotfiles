@@ -39,6 +39,7 @@ require('dashboard').setup {
     },
 }
 
+-- I think I dont need this
 -- Dashboard Highlight follows default Vim highlight, view it in :Telescope highlight
             -- {
             --     icon = '󰚰 ',

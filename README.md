@@ -9,12 +9,11 @@ If you have been using nvim, backup your nvim folder before installation. If you
 
 **Prerequisite**  
 1. [Packer](https://github.com/wbthomason/packer.nvim#quickstart).
-2. [NodeJS](https://github.com/nodejs/node#download)
+2. [NodeJS](https://github.com/nodejs/node#download), you may use [NVM](https://github.com/nvm-sh/nvm#node-version-manager---) for it.
 
 **Installation**  
-1. Install prerequisites, you may use [NVM](https://github.com/nvm-sh/nvm#node-version-manager---) for it.
-2. Clone this repo to your Neovim configuration folder.
-3. Open Neovim to install plugins. You may get some errors, just leave it.
-4. After plugins installation, you may restart Neovim (recomended) or start using it.
+1. Clone this repo to your Neovim configuration folder.
+2. Open Neovim to install plugins. You may get some errors, just leave it.
+3. After plugins installation, you may restart Neovim (recomended) or start using it.
 
 Hope it gives you benefits as I just newbie in publication document. You may fork or pull request for the repo. Thank you.
