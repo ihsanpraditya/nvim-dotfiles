@@ -6,7 +6,6 @@ require("remap")
 -- ###############################################################################
 -- NEOVIM CONFIGURATION
 local op = vim.opt
-
 -- number
 op.number = true
 op.relativenumber = true
