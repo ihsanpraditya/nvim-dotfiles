@@ -25,25 +25,25 @@ return require('packer').startup(function(use)
     use 'EdenEast/nightfox.nvim'
 
     -- Appearance
-    use { 'glepnir/dashboard-nvim', event = 'VimEnter' , config = function() require('dashboard').setup() end}
     use 'lukas-reineke/indent-blankline.nvim' -- indent line
     use {'akinsho/bufferline.nvim', tag = "v3.*"} -- buffer/tab bar
     use 'nvim-lualine/lualine.nvim' -- status bar
     use 'terrortylor/nvim-comment'
 
     -- Editing
-    use 'mbbill/undotree' -- Undo History Menu and increase it
-    use 'folke/which-key.nvim' -- popup for available key
+    -- use 'mbbill/undotree' -- Undo History Menu and increase it
+    -- use 'folke/which-key.nvim' -- popup for available key
     use 'windwp/nvim-autopairs'
     use {'mg979/vim-visual-multi', branch = 'master'}
     use 'tpope/vim-fugitive' -- Git Support for Neovim
+    --[[
     use {
         'nvim-treesitter/nvim-treesitter', -- Syntax Checking
         run = ':TSUpdate'
     }
     use 'nvim-treesitter/playground'
     use 'p00f/nvim-ts-rainbow' -- parenttheses colouring with treesitter
-    use 'nvim-orgmode/orgmode'
+    -- use 'nvim-orgmode/orgmode'
     use {
         "aurum77/live-server.nvim",
         run = function()
@@ -51,7 +51,6 @@ return require('packer').startup(function(use)
         end,
         cmd = { "LiveServer", "LiveServerStart", "LiveServerStop" },
     }
-
     -- LSP
     use {
         'VonHeikemen/lsp-zero.nvim',
@@ -74,4 +73,5 @@ return require('packer').startup(function(use)
             {'rafamadriz/friendly-snippets'},
         }
     }
+    ]]
 end)

@@ -38,15 +38,14 @@ vim.keymap.set("i", "jk", "<Esc>") -- map <jk> to <Esc>
 vim.keymap.set("t", "jk", "<C-\\><C-n>") -- map <jk> to <Esc>
 
 -- Others: Plugins remap at after/plugin/<plugin_name>.lua
-vim.keymap.set("n", "<leader>hh", ':Dashboard<CR>')
 vim.keymap.set("n", "<leader>n", ':enew<CR>')
 vim.keymap.set("n", "<ESC>", ':nohlsearch<CR>') -- map <ESC> to clear highlight search
 vim.keymap.set("n", "<leader>.",":lcd %:p:h<CR>") -- make directory to the current buffer
 vim.keymap.set("n", "<F3>",":Telescope colorscheme<CR>")
 vim.keymap.set("n", "<leader>O", 'O<ESC>') -- insert up blank line
 vim.keymap.set("n", "<leader>o", 'o<ESC>') -- insert down blank line
-vim.keymap.set("n", "<leader>u", ':UndotreeToggle<CR>') -- toggle the undo history menu
-vim.keymap.set("n", "<leader>U", ':UndotreeFocus<CR>') -- switch cursor to undo menu
+-- vim.keymap.set("n", "<leader>u", ':UndotreeToggle<CR>') -- toggle the undo history menu
+-- vim.keymap.set("n", "<leader>U", ':UndotreeFocus<CR>') -- switch cursor to undo menu
 
 vim.keymap.set('n', '<leader>f', ':Telescope find_files<CR>')
 vim.keymap.set('n', '<leader>g', ':Telescope live_grep<CR>')
@@ -55,10 +54,3 @@ vim.keymap.set( "n", "<leader>b", ':Telescope file_browser<CR>')
 -- vim.keymap.set('n', '<leader>fx', function()
 -- 	builtin.grep_string({ search = vim.fn.input("Grep > ") })
 -- end)
-
--- for Neovide
-if vim.g.neovide then
-    vim.keymap.set("n", "<D-v>", '"+p')
-    vim.keymap.set("n", "<D-c>", '"+y')
-    vim.keymap.set("v", "<D-c>", '"+y')
-end
