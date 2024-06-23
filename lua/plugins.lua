@@ -41,15 +41,29 @@ return require('packer').startup(function(use)
 
     use {'mg979/vim-visual-multi', branch = 'master'}
     use 'tpope/vim-fugitive' -- Git Support for Neovim
+    use 'sheerun/vim-polyglot'
 
     use {
-    "windwp/nvim-autopairs",
-    event = "InsertEnter",
-    config = function()
-        require("nvim-autopairs").setup {}
-    end
-}
+        "windwp/nvim-autopairs",
+        event = "InsertEnter",
+        config = function()
+            require("nvim-autopairs").setup {}
+        end
+    }
 
+    -- lsp-zero help you integrate nvim-cmp (an autocompletion plugin) and nvim-lspconfig
+    use {
+        'VonHeikemen/lsp-zero.nvim',
+        branch = 'v3.x',
+        requires = {
+            {'williamboman/mason.nvim'}, -- Portable package manager
+            {'williamboman/mason-lspconfig.nvim'}, -- Extension to the package manager
+            {'neovim/nvim-lspconfig'}, -- Quickstart configs for Nvim LSP
+            {'hrsh7th/nvim-cmp'}, -- completion engine plugin
+            {'hrsh7th/cmp-nvim-lsp'}, -- nvim-cmp source for neovim builtin LSP client
+            {'L3MON4D3/LuaSnip'}, -- Snippet Engine
+        },
+    }
     --[[
     -- use 'nvim-orgmode/orgmode'
     use {
@@ -64,20 +78,16 @@ return require('packer').startup(function(use)
         'VonHeikemen/lsp-zero.nvim',
         requires = {
             -- LSP Support
-            {'neovim/nvim-lspconfig'},
             {'williamboman/mason.nvim'},
             {'williamboman/mason-lspconfig.nvim'},
 
             -- Autocompletion
-            {'hrsh7th/nvim-cmp'},
-            {'hrsh7th/cmp-buffer'},
-            {'hrsh7th/cmp-path'},
-            {'saadparwaiz1/cmp_luasnip'},
-            {'hrsh7th/cmp-nvim-lsp'},
-            {'hrsh7th/cmp-nvim-lua'},
+            {'hrsh7th/cmp-buffer'}, -- nvim-cmp source for buffer words
+            {'hrsh7th/cmp-path'},-- nvim-cmp source for filesystem paths
+            {'hrsh7th/cmp-nvim-lua'}, -- nvim-cmp source for neovim Lua runtime API
+            {'saadparwaiz1/cmp_luasnip'}, -- luasnip completion source for nvim-cmp
 
             -- Snippets
-            {'L3MON4D3/LuaSnip'},
             {'rafamadriz/friendly-snippets'},
         }
     }
