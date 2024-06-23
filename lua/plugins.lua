@@ -1,17 +1,22 @@
 -- plugin with 'require' option also installs its requirement
 -- so you don't have to type it anymore
+---------- INDEX ----------
+-- speed up
+-- fuzzy finder
+-- icons in directory view
+-- colorscheme
+-- appearance
+-- editing
+-- LSP
+
 vim.cmd [[packadd packer.nvim]]
 return require('packer').startup(function(use)
-    -- Packer can manage itself
+    -- Packer manage itself
     use 'wbthomason/packer.nvim'
-
-    --  Speed up loading Lua modules
-    use 'lewis6991/impatient.nvim'
 
     -- Fuzzy Finder
     use {
-        'nvim-telescope/telescope.nvim', tag = '0.1.0',
-        -- or                            , branch = '0.1.x',
+        'nvim-telescope/telescope.nvim', tag = '0.1.x',
         requires = { {'nvim-lua/plenary.nvim'} } -- Asynchronous programming using coroutines
     }
     use 'nvim-telescope/telescope-file-browser.nvim'
@@ -26,23 +31,26 @@ return require('packer').startup(function(use)
 
     -- Appearance
     use 'lukas-reineke/indent-blankline.nvim' -- indent line
-    use {'akinsho/bufferline.nvim', tag = "v3.*"} -- buffer/tab bar
+    use {'akinsho/bufferline.nvim', tag = "*"} -- buffer/tab bar
     use 'nvim-lualine/lualine.nvim' -- status bar
     use 'terrortylor/nvim-comment'
 
     -- Editing
     -- use 'mbbill/undotree' -- Undo History Menu and increase it
     -- use 'folke/which-key.nvim' -- popup for available key
-    use 'windwp/nvim-autopairs'
+
     use {'mg979/vim-visual-multi', branch = 'master'}
     use 'tpope/vim-fugitive' -- Git Support for Neovim
-    --[[
+
     use {
-        'nvim-treesitter/nvim-treesitter', -- Syntax Checking
-        run = ':TSUpdate'
-    }
-    use 'nvim-treesitter/playground'
-    use 'p00f/nvim-ts-rainbow' -- parenttheses colouring with treesitter
+    "windwp/nvim-autopairs",
+    event = "InsertEnter",
+    config = function()
+        require("nvim-autopairs").setup {}
+    end
+}
+
+    --[[
     -- use 'nvim-orgmode/orgmode'
     use {
         "aurum77/live-server.nvim",
@@ -75,3 +83,5 @@ return require('packer').startup(function(use)
     }
     ]]
 end)
+
+

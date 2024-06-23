@@ -1,6 +1,6 @@
 -- See which-key.txt for custom mapping label
 -- Leader
-vim.g.mapleader = ","
+vim.g.mapleader = " "
 
 -- Directory
 vim.keymap.set("n", "<leader>d", ':Explore<CR>')
@@ -18,7 +18,7 @@ vim.keymap.set("n", "<leader>1", ':only<CR>') -- close other windows
 
 -- Buffer
 vim.keymap.set("n", "<leader>c", ':bdelete<CR>') -- close current buffer
-vim.keymap.set("n", "<leader>C", ':bdelete!<CR>') -- close current buffer
+vim.keymap.set("n", "<leader>C", ':bdelete!<CR>') -- force close current buffe 
 vim.keymap.set("n", "<leader>z", ':bprevious<CR>') -- go to previous buffer
 vim.keymap.set("n", "<leader>x", ':bnext<CR>') -- go to next buffer
 
