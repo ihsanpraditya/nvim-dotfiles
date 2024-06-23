@@ -61,8 +61,9 @@ vim.g.netrw_bufsettings = "noma nomod nonu nobl nowrap ro rnu"
 -- PROVIDER
 if vim.fn.has('win32') or vim.loop.os_uname().sysname == "Windows_NT" then
 vim.g.python3_host_prog =  vim.fn.substitute(vim.fn.exepath("python"), ".exe$", '', 'g')
--- vim.g.node_host_prog = 0
--- vim.g.perl_host_prog = 0
+vim.g.node_host_prog =  "C:/Users/ACER/AppData/Roaming/npm/node_modules/neovim/lib/host/NvimPlugin.js"
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_ruby_provider = 0
 end
 
 ---------- NEOVIDE ----------
