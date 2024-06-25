@@ -15,11 +15,7 @@ return require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
 
     -- Fuzzy Finder
-    use {
-        'nvim-telescope/telescope.nvim', tag = '0.1.x',
-        requires = { {'nvim-lua/plenary.nvim'} } -- Asynchronous programming using coroutines
-    }
-    use 'nvim-telescope/telescope-file-browser.nvim'
+    use 'ibhagwan/fzf-lua'
 
     -- Icons in Directory view(like Dired mode, telescope view)
     use 'nvim-tree/nvim-web-devicons'

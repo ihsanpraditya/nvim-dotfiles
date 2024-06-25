@@ -94,6 +94,11 @@ _G.packer_plugins = {
     path = "C:\\Users\\ACER\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\dracula.nvim",
     url = "https://github.com/Mofiqul/dracula.nvim"
   },
+  ["fzf-lua"] = {
+    loaded = true,
+    path = "C:\\Users\\ACER\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\fzf-lua",
+    url = "https://github.com/ibhagwan/fzf-lua"
+  },
   ["indent-blankline.nvim"] = {
     loaded = true,
     path = "C:\\Users\\ACER\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\indent-blankline.nvim",
@@ -163,25 +168,10 @@ _G.packer_plugins = {
     path = "C:\\Users\\ACER\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\packer.nvim",
     url = "https://github.com/wbthomason/packer.nvim"
   },
-  ["plenary.nvim"] = {
-    loaded = true,
-    path = "C:\\Users\\ACER\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\plenary.nvim",
-    url = "https://github.com/nvim-lua/plenary.nvim"
-  },
   ["rose-pine"] = {
     loaded = true,
     path = "C:\\Users\\ACER\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\rose-pine",
     url = "https://github.com/rose-pine/neovim"
-  },
-  ["telescope-file-browser.nvim"] = {
-    loaded = true,
-    path = "C:\\Users\\ACER\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\telescope-file-browser.nvim",
-    url = "https://github.com/nvim-telescope/telescope-file-browser.nvim"
-  },
-  ["telescope.nvim"] = {
-    loaded = true,
-    path = "C:\\Users\\ACER\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\telescope.nvim",
-    url = "https://github.com/nvim-telescope/telescope.nvim"
   },
   ["vim-fugitive"] = {
     loaded = true,

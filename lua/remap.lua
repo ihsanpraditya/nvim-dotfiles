@@ -46,10 +46,9 @@ vim.keymap.set("n", "<leader>o", 'o<ESC>') -- insert down blank line
 -- vim.keymap.set("n", "<leader>u", ':UndotreeToggle<CR>') -- toggle the undo history menu
 -- vim.keymap.set("n", "<leader>U", ':UndotreeFocus<CR>') -- switch cursor to undo menu
 
-vim.keymap.set('n', '<leader>f', ':Telescope find_files<CR>')
-vim.keymap.set('n', '<leader>g', ':Telescope live_grep<CR>')
-vim.keymap.set('n', '<leader>r', ':Telescope oldfiles<CR>')
-vim.keymap.set( "n", "<leader>b", ':Telescope file_browser<CR>')
+vim.keymap.set('n', '<leader>f', ':FzfLua files<CR>')
+vim.keymap.set('n', '<leader>g', ':FzfLua live_grep<CR>')
+vim.keymap.set('n', '<leader>r', ':FzfLua oldfiles<CR>')
 -- vim.keymap.set('n', '<leader>fx', function()
 -- 	builtin.grep_string({ search = vim.fn.input("Grep > ") })
 -- end)

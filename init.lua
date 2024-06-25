@@ -71,6 +71,7 @@ end
 
 ---------- NEOVIDE ----------
 if vim.g.neovide then
+vim.cmd.cd('~') -- set directory to HOME
 vim.g.neovide_transparency = 0.9
 vim.g.transparency = 0.0
 -- vim.o.lines = 20
