@@ -5,20 +5,19 @@ vim.g.mapleader = " "
 -- Directory
 vim.keymap.set("n", "<leader>d", ':Explore<CR>')
 vim.keymap.set("n", "<leader>e", ':e <C-R>=expand("%:p:h") . "/" <CR>')
-vim.keymap.set("n", "<leader>te", ':tabe <C-R>=expand("%:p:h") . "/" <CR>')
 
 
 -- Files
 vim.keymap.set("n", "<leader>s", ':source<CR>') -- sourcing
 vim.keymap.set("n", "<leader>w", ':write<CR>') -- saving
 vim.keymap.set("n", "<C-z>", ':write<CR>') -- remap C-z to saving
-vim.keymap.set("n", "<leader>q", ':quit<CR>') -- quiting
+vim.keymap.set("n", "<leader>q", ':quit<CR>') -- quitting
 vim.keymap.set("n", "<leader>Q",":q!<CR>") -- force quit
 vim.keymap.set("n", "<leader>1", ':only<CR>') -- close other windows
 
 -- Buffer
-vim.keymap.set("n", "<leader>c", ':bdelete<CR>') -- close current buffer
-vim.keymap.set("n", "<leader>C", ':bdelete!<CR>') -- force close current buffe 
+vim.keymap.set("n", "<leader>c", ':close<CR>') -- close current buffer
+vim.keymap.set("n", "<leader>C", ':close!<CR>') -- force close current buffe 
 vim.keymap.set("n", "<leader>z", ':bprevious<CR>') -- go to previous buffer
 vim.keymap.set("n", "<leader>x", ':bnext<CR>') -- go to next buffer
 
