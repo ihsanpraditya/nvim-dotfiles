@@ -1,6 +1,6 @@
 -- all required files at lua folder
 require("plugins")
-require("colors")
+require("termguicolors")
 require("remap")
 vim.loader.enable() -- might improve startup time
 
@@ -63,7 +63,7 @@ vim.g.netrw_bufsettings = "noma nomod nonu nobl nowrap ro rnu"
 -- PROVIDER
 if vim.fn.has('win32') or vim.loop.os_uname().sysname == "Windows_NT" then
 vim.g.python3_host_prog =  vim.fn.substitute(vim.fn.exepath("python"), ".exe$", '', 'g')
-vim.g.node_host_prog =  "C:/Users/ACER/AppData/Roaming/npm/node_modules/neovim/lib/host/index.js"
+vim.g.node_host_prog =  "C:/Users/ACER/AppData/Roaming/npm/node_modules/neovim/bin/cli.js"
 -- vim.g.loaded_node_provider = 0
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_ruby_provider = 0
@@ -95,12 +95,13 @@ vim.keymap.set('n', '<C-S-s>', ':w<CR>') -- Save
 vim.keymap.set('v', '<C-S-c>', '"+y') -- Copy
 vim.keymap.set('n', '<C-S-v>', '"+P') -- Paste normal mode
 vim.keymap.set('v', '<C-S-v>', '"+P') -- Paste visual mode
-vim.keymap.set('c', '<C-S-v>', '<C-R>+') -- Paste command mode
+vim.keymap.set('c', '<C-S-v>', '<C-r>+') -- Paste command mode
 vim.keymap.set('i', '<C-S-v>', '<ESC>l"+Pli') -- Paste insert mode
 
 -- Allow clipboard copy paste in neovim
 vim.api.nvim_set_keymap('', '<C-S-v>', '+p<CR>', { noremap = true, silent = true})
-vim.api.nvim_set_keymap('!', '<C-S-v>', '<C-R>+', { noremap = true, silent = true})
-vim.api.nvim_set_keymap('t', '<C-S-v>', '<C-R>+', { noremap = true, silent = true})
-vim.api.nvim_set_keymap('v', '<C-S-v>', '<C-R>+', { noremap = true, silent = true})
+vim.api.nvim_set_keymap('!', '<C-S-v>', '<C-r>+', { noremap = true, silent = true})
+vim.api.nvim_set_keymap('t', '<C-S-v>', '<C-r>+', { noremap = true, silent = true})
+vim.api.nvim_set_keymap('v', '<C-S-v>', '<C-r>+', { noremap = true, silent = true})
 end
+require("colors") -- error in this file causes not load other config
