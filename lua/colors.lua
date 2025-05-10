@@ -1,7 +1,7 @@
 function trp_theme(color)
-  color = color or "desert" -- this make rose-pine as default if empty
+  color = color or "default" -- this make 2nd parameter as default if color is empty
   vim.cmd.colorscheme(color)
-  -- for transparency, these 2 lines make the function just for Neovim within terminal
+  -- for transparency within terminal
   vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
   vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 end
@@ -18,6 +18,8 @@ then
 else
   vim.opt.background = "dark"
 end
+
+vim.opt.termguicolors = true
 ----- LIGHT COLOR -----
 -- Blue (but set bg to dark, wkwk)
 -- delek 
