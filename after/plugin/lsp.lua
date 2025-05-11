@@ -5,6 +5,7 @@
 -- Inlay Hint
 -- Diagnostics sign text
 -- Format on save
+-- Completion
 -- Running the server
 
 -- https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification
@@ -349,6 +350,26 @@ function Format()
     timeout_ms = 10000,
   })
 end
+
+-- Completion
+vim.opt.completeopt = {'menu', 'menuone', 'noinsert', 'noselect'}
+
+vim.api.nvim_create_autocmd('LspAttach', {
+  desc = 'Enable vim.lsp.completion',
+  callback = function(event)
+    local client_id = vim.tbl_get(event, 'data', 'client_id')
+    if client_id == nil then
+      return
+    end
+
+    -- warning: this api is unstable
+    vim.lsp.completion.enable(true, client_id, event.buf, {autotrigger = false})
+
+    -- warning: this api is unstable
+    -- Trigger lsp completion manually using Ctrl + Space
+    vim.keymap.set('i', '<C-,>', '<cmd>lua vim.lsp.completion.trigger()<cr>')
+  end
+})
 
 -- Running the server
 -- Working with frontend
