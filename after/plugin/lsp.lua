@@ -9,8 +9,9 @@
 -- Running the server
 
 -- https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification
+-- https://github.com/neovim/nvim-lspconfig/tree/master/lsp
 
--- ############################## CONFIG ##############################
+-- ###################### START LANGUAGE SERVER CONFIG #######################
 -- HTML
 vim.lsp.config['html'] = {
   cmd = { 'vscode-html-language-server', '--stdio' },
@@ -274,7 +275,32 @@ vim.lsp.config['vimls'] = {
   }
 }
 
--- ####################################################################
+-- PYTHON
+-- https://github.com/neovim/nvim-lspconfig/blob/master/lsp/pylsp.lua
+vim.lsp.config['pylsp'] = {
+  cmd = { 'pylsp' },
+  filetypes = { 'python' },
+  root_markers = {
+    'pyproject.toml',
+    'setup.py',
+    'setup.cfg',
+    'requirements.txt',
+    'Pipfile',
+    '.git',
+  },
+  settings = {
+    pylsp = {
+      plugins = {
+        pycodestyle = {
+          ignore = {'W391'},
+          maxLineLength = 100
+        }
+      }
+    }
+  }
+}
+
+-- ####################### END LANGUAGE SERVER CONFIG ########################
 
 -- Inlay Hint
 vim.api.nvim_create_autocmd('LspAttach', {
@@ -391,3 +417,4 @@ vim.lsp.enable('marksman')  -- markdown
 -- Other environment
 vim.lsp.enable('vimls') -- vimscript
 vim.lsp.enable('lua_ls') -- for Neovim Lua config
+vim.lsp.enable('pylsp')  -- python

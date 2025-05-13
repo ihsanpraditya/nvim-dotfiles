@@ -49,8 +49,8 @@ local function save_profiles(threshold)
 end
 
 time([[Luarocks path setup]], true)
-local package_path_str = "/home/sanArch/.cache/nvim/packer_hererocks/2.1.1741730670/share/lua/5.1/?.lua;/home/sanArch/.cache/nvim/packer_hererocks/2.1.1741730670/share/lua/5.1/?/init.lua;/home/sanArch/.cache/nvim/packer_hererocks/2.1.1741730670/lib/luarocks/rocks-5.1/?.lua;/home/sanArch/.cache/nvim/packer_hererocks/2.1.1741730670/lib/luarocks/rocks-5.1/?/init.lua"
-local install_cpath_pattern = "/home/sanArch/.cache/nvim/packer_hererocks/2.1.1741730670/lib/lua/5.1/?.so"
+local package_path_str = "/Users/ihsanpraditya/.cache/nvim/packer_hererocks/2.1.1741730670/share/lua/5.1/?.lua;/Users/ihsanpraditya/.cache/nvim/packer_hererocks/2.1.1741730670/share/lua/5.1/?/init.lua;/Users/ihsanpraditya/.cache/nvim/packer_hererocks/2.1.1741730670/lib/luarocks/rocks-5.1/?.lua;/Users/ihsanpraditya/.cache/nvim/packer_hererocks/2.1.1741730670/lib/luarocks/rocks-5.1/?/init.lua"
+local install_cpath_pattern = "/Users/ihsanpraditya/.cache/nvim/packer_hererocks/2.1.1741730670/lib/lua/5.1/?.so"
 if not string.find(package.path, package_path_str, 1, true) then
   package.path = package.path .. ';' .. package_path_str
 end
@@ -76,40 +76,40 @@ time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
   ["bufferline.nvim"] = {
     loaded = true,
-    path = "/home/sanArch/.local/share/nvim/site/pack/packer/start/bufferline.nvim",
+    path = "/Users/ihsanpraditya/.local/share/nvim/site/pack/packer/start/bufferline.nvim",
     url = "https://github.com/akinsho/bufferline.nvim"
   },
   ["dashboard-nvim"] = {
-    config = { "\27LJ\2\nÚ\1\0\0\5\0\n\0\r6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\5\0005\4\4\0=\4\6\0035\4\a\0=\4\b\3=\3\t\2B\0\2\1K\0\1\0\vconfig\fproject\1\0\5\nlimit\3\b\venable\2\vaction\17FzfLua files\nlabel\5\ticon\bî¬°\rpackages\1\0\2\fproject\0\rpackages\0\1\0\1\venable\1\1\0\2\vconfig\0\ntheme\nhyper\nsetup\14dashboard\frequire\0" },
+    config = { "\27LJ\2\nÚ\1\0\0\5\0\n\0\r6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\5\0005\4\4\0=\4\6\0035\4\a\0=\4\b\3=\3\t\2B\0\2\1K\0\1\0\vconfig\fproject\1\0\5\vaction\17FzfLua files\nlimit\3\b\nlabel\5\ticon\bî¬°\venable\2\rpackages\1\0\2\rpackages\0\fproject\0\1\0\1\venable\1\1\0\2\ntheme\nhyper\vconfig\0\nsetup\14dashboard\frequire\0" },
     loaded = false,
     needs_bufread = false,
     only_cond = false,
-    path = "/home/sanArch/.local/share/nvim/site/pack/packer/opt/dashboard-nvim",
+    path = "/Users/ihsanpraditya/.local/share/nvim/site/pack/packer/opt/dashboard-nvim",
     url = "https://github.com/nvimdev/dashboard-nvim"
   },
   ["diffview.nvim"] = {
     loaded = true,
-    path = "/home/sanArch/.local/share/nvim/site/pack/packer/start/diffview.nvim",
+    path = "/Users/ihsanpraditya/.local/share/nvim/site/pack/packer/start/diffview.nvim",
     url = "https://github.com/sindrets/diffview.nvim"
   },
   ["dracula.nvim"] = {
     loaded = true,
-    path = "/home/sanArch/.local/share/nvim/site/pack/packer/start/dracula.nvim",
+    path = "/Users/ihsanpraditya/.local/share/nvim/site/pack/packer/start/dracula.nvim",
     url = "https://github.com/Mofiqul/dracula.nvim"
   },
   ["fzf-lua"] = {
     loaded = true,
-    path = "/home/sanArch/.local/share/nvim/site/pack/packer/start/fzf-lua",
+    path = "/Users/ihsanpraditya/.local/share/nvim/site/pack/packer/start/fzf-lua",
     url = "https://github.com/ibhagwan/fzf-lua"
   },
   ["gitsigns.nvim"] = {
     loaded = true,
-    path = "/home/sanArch/.local/share/nvim/site/pack/packer/start/gitsigns.nvim",
+    path = "/Users/ihsanpraditya/.local/share/nvim/site/pack/packer/start/gitsigns.nvim",
     url = "https://github.com/lewis6991/gitsigns.nvim"
   },
   ["indent-blankline.nvim"] = {
     loaded = true,
-    path = "/home/sanArch/.local/share/nvim/site/pack/packer/start/indent-blankline.nvim",
+    path = "/Users/ihsanpraditya/.local/share/nvim/site/pack/packer/start/indent-blankline.nvim",
     url = "https://github.com/lukas-reineke/indent-blankline.nvim"
   },
   ["live-server.nvim"] = {
@@ -117,17 +117,17 @@ _G.packer_plugins = {
     loaded = false,
     needs_bufread = false,
     only_cond = false,
-    path = "/home/sanArch/.local/share/nvim/site/pack/packer/opt/live-server.nvim",
+    path = "/Users/ihsanpraditya/.local/share/nvim/site/pack/packer/opt/live-server.nvim",
     url = "https://github.com/aurum77/live-server.nvim"
   },
   ["lualine.nvim"] = {
     loaded = true,
-    path = "/home/sanArch/.local/share/nvim/site/pack/packer/start/lualine.nvim",
+    path = "/Users/ihsanpraditya/.local/share/nvim/site/pack/packer/start/lualine.nvim",
     url = "https://github.com/nvim-lualine/lualine.nvim"
   },
   ["nightfox.nvim"] = {
     loaded = true,
-    path = "/home/sanArch/.local/share/nvim/site/pack/packer/start/nightfox.nvim",
+    path = "/Users/ihsanpraditya/.local/share/nvim/site/pack/packer/start/nightfox.nvim",
     url = "https://github.com/EdenEast/nightfox.nvim"
   },
   ["nvim-autopairs"] = {
@@ -135,63 +135,63 @@ _G.packer_plugins = {
     loaded = false,
     needs_bufread = false,
     only_cond = false,
-    path = "/home/sanArch/.local/share/nvim/site/pack/packer/opt/nvim-autopairs",
+    path = "/Users/ihsanpraditya/.local/share/nvim/site/pack/packer/opt/nvim-autopairs",
     url = "https://github.com/windwp/nvim-autopairs"
   },
   ["nvim-comment"] = {
     loaded = true,
-    path = "/home/sanArch/.local/share/nvim/site/pack/packer/start/nvim-comment",
+    path = "/Users/ihsanpraditya/.local/share/nvim/site/pack/packer/start/nvim-comment",
     url = "https://github.com/terrortylor/nvim-comment"
   },
   ["nvim-surround"] = {
     config = { "\27LJ\2\n?\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\18nvim-surround\frequire\0" },
     loaded = true,
-    path = "/home/sanArch/.local/share/nvim/site/pack/packer/start/nvim-surround",
+    path = "/Users/ihsanpraditya/.local/share/nvim/site/pack/packer/start/nvim-surround",
     url = "https://github.com/kylechui/nvim-surround"
   },
   ["nvim-tree.lua"] = {
     loaded = true,
-    path = "/home/sanArch/.local/share/nvim/site/pack/packer/start/nvim-tree.lua",
+    path = "/Users/ihsanpraditya/.local/share/nvim/site/pack/packer/start/nvim-tree.lua",
     url = "https://github.com/nvim-tree/nvim-tree.lua"
   },
   ["nvim-web-devicons"] = {
     loaded = true,
-    path = "/home/sanArch/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
+    path = "/Users/ihsanpraditya/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
     url = "https://github.com/nvim-tree/nvim-web-devicons"
   },
   ["packer.nvim"] = {
     loaded = true,
-    path = "/home/sanArch/.local/share/nvim/site/pack/packer/start/packer.nvim",
+    path = "/Users/ihsanpraditya/.local/share/nvim/site/pack/packer/start/packer.nvim",
     url = "https://github.com/wbthomason/packer.nvim"
   },
   ["rose-pine"] = {
     loaded = true,
-    path = "/home/sanArch/.local/share/nvim/site/pack/packer/start/rose-pine",
+    path = "/Users/ihsanpraditya/.local/share/nvim/site/pack/packer/start/rose-pine",
     url = "https://github.com/rose-pine/neovim"
   },
   ["text-case.nvim"] = {
     loaded = true,
-    path = "/home/sanArch/.local/share/nvim/site/pack/packer/start/text-case.nvim",
+    path = "/Users/ihsanpraditya/.local/share/nvim/site/pack/packer/start/text-case.nvim",
     url = "https://github.com/johmsalas/text-case.nvim"
   },
   ["tokyonight.nvim"] = {
     loaded = true,
-    path = "/home/sanArch/.local/share/nvim/site/pack/packer/start/tokyonight.nvim",
+    path = "/Users/ihsanpraditya/.local/share/nvim/site/pack/packer/start/tokyonight.nvim",
     url = "https://github.com/folke/tokyonight.nvim"
   },
   ["vim-fugitive"] = {
     loaded = true,
-    path = "/home/sanArch/.local/share/nvim/site/pack/packer/start/vim-fugitive",
+    path = "/Users/ihsanpraditya/.local/share/nvim/site/pack/packer/start/vim-fugitive",
     url = "https://github.com/tpope/vim-fugitive"
   },
   ["vim-polyglot"] = {
     loaded = true,
-    path = "/home/sanArch/.local/share/nvim/site/pack/packer/start/vim-polyglot",
+    path = "/Users/ihsanpraditya/.local/share/nvim/site/pack/packer/start/vim-polyglot",
     url = "https://github.com/sheerun/vim-polyglot"
   },
   ["vim-visual-multi"] = {
     loaded = true,
-    path = "/home/sanArch/.local/share/nvim/site/pack/packer/start/vim-visual-multi",
+    path = "/Users/ihsanpraditya/.local/share/nvim/site/pack/packer/start/vim-visual-multi",
     url = "https://github.com/mg979/vim-visual-multi"
   }
 }
@@ -204,13 +204,6 @@ time([[Config for nvim-surround]], false)
 
 -- Command lazy-loads
 time([[Defining lazy-load commands]], true)
-pcall(vim.api.nvim_create_user_command, 'LiveServerStart', function(cmdargs)
-          require('packer.load')({'live-server.nvim'}, { cmd = 'LiveServerStart', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
-        end,
-        {nargs = '*', range = true, bang = true, complete = function()
-          require('packer.load')({'live-server.nvim'}, {}, _G.packer_plugins)
-          return vim.fn.getcompletion('LiveServerStart ', 'cmdline')
-      end})
 pcall(vim.api.nvim_create_user_command, 'LiveServerStop', function(cmdargs)
           require('packer.load')({'live-server.nvim'}, { cmd = 'LiveServerStop', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
         end,
@@ -225,14 +218,21 @@ pcall(vim.api.nvim_create_user_command, 'LiveServer', function(cmdargs)
           require('packer.load')({'live-server.nvim'}, {}, _G.packer_plugins)
           return vim.fn.getcompletion('LiveServer ', 'cmdline')
       end})
+pcall(vim.api.nvim_create_user_command, 'LiveServerStart', function(cmdargs)
+          require('packer.load')({'live-server.nvim'}, { cmd = 'LiveServerStart', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
+        end,
+        {nargs = '*', range = true, bang = true, complete = function()
+          require('packer.load')({'live-server.nvim'}, {}, _G.packer_plugins)
+          return vim.fn.getcompletion('LiveServerStart ', 'cmdline')
+      end})
 time([[Defining lazy-load commands]], false)
 
 vim.cmd [[augroup packer_load_aucmds]]
 vim.cmd [[au!]]
   -- Event lazy-loads
 time([[Defining lazy-load event autocommands]], true)
-vim.cmd [[au InsertEnter * ++once lua require("packer.load")({'nvim-autopairs'}, { event = "InsertEnter *" }, _G.packer_plugins)]]
 vim.cmd [[au VimEnter * ++once lua require("packer.load")({'dashboard-nvim'}, { event = "VimEnter *" }, _G.packer_plugins)]]
+vim.cmd [[au InsertEnter * ++once lua require("packer.load")({'nvim-autopairs'}, { event = "InsertEnter *" }, _G.packer_plugins)]]
 time([[Defining lazy-load event autocommands]], false)
 vim.cmd("augroup END")
 
