@@ -1,13 +1,31 @@
 -- plugin with 'require' option also installs its requirement
 -- so you don't have to type it anymore
+-- WARNING need to migrate to lazy.nvim
 ---------- INDEX ----------
 -- app features
+--  plenary
 --  fzf (fuzzy finder)
+--  dotenv integration
+--  nvim-dap: Debug Adapter Protocol client
+--  nvim-tree file manager
+--  notify
+--  todo magic comment
+--  Trouble: for diagnotisc
+--  data-viewer for CSV,TSV
+--  sqlua SQL integration
+--  neominimap
+--  dashboard-nvim
 -- appearance
+--  devicons
 --  bufferline
 --  lualine
---  icons (directory view)
---  colorscheme
+--  colorschemes
+--    rose-pine
+--    dracula
+--    nightfox
+--    tokyonight
+--    oxocarbon
+--    midnight
 -- editing
 --  vim-fugitive Git integration
 --  gitsigns Git integration for buffers
@@ -16,23 +34,56 @@
 --  visual-multi
 --  nvim-polyglot (Syntax)
 --  nvim-comment
---  text-case
 --  undotree
 --  which-key
+--  ledger highlighting
+--  tabular (align)
+--  illuminate (highlight same word)
+--  text-case
 --  nvim-surround
 --  nvim-autopairs
--- LSP
-
+--  luasnip
+--
+-- .local/share/nvim/site/pack/packer/
+--       start for internal setup
+--       opt for external setup
 vim.cmd [[packadd packer.nvim]]
 return require('packer').startup(function(use)
     -- Packer manage itself
     use 'wbthomason/packer.nvim'
 
     -- APP FEATURES
-    use 'ibhagwan/fzf-lua'
+    use "nvim-lua/plenary.nvim"
+    --  provides a collection of useful functions
+    --  and utilities to simplify plugin development.
+    use 'ibhagwan/fzf-lua' -- NOTE planning to use Telescope
+    use 'ellisonleao/dotenv.nvim'
+    -- use 'mfussenegger/nvim-dap'
     use 'nvim-tree/nvim-tree.lua'
+    use 'rcarriga/nvim-notify'     -- TODO use it
+    use 'folke/todo-comments.nvim' -- require plenary, need Telescope for better use
+    -- use {
+    --     'folke/trouble.nvim',
+    --     cmd = 'Trouble'
+    -- }
+    use 'VidocqH/data-viewer.nvim' -- require plenary FIX
     use {
-        'nvimdev/dashboard-nvim',
+        'xemptuous/sqlua.nvim',
+        cmd = 'SQLua',
+        opt = true,
+        config = function()
+            require('sqlua').setup()
+        end
+    }
+    use {
+        'Isrothy/neominimap.nvim',
+        config = function()
+            vim.g.neominimap_enabled = false
+            vim.keymap.set('n', '<leader>m', ':Neominimap Toggle<CR>')
+        end
+    }
+    use {
+        'nvimdev/dashboard-nvim', -- requires nviw-web-devicons
         event = 'VimEnter',
         config = function()
             require("dashboard").setup {
@@ -42,21 +93,19 @@ return require('packer').startup(function(use)
                     project = { enable = true, limit = 8, icon = '', label = '', action = 'FzfLua files' },
                 }
             }
-        end,
-        -- requires = {'nvim-tree/nvim-web-devicons'}
+        end
     }
 
     -- APPEARANCE
-    use {
-        'akinsho/bufferline.nvim', -- buffer/tab bar
-        -- requires = {'nvim-tree/nvim-web-devicons'}
-    }
-    use 'nvim-lualine/lualine.nvim'   -- status bar
-    use 'nvim-tree/nvim-web-devicons' -- icons dired mode, used by many packages
+    use 'nvim-tree/nvim-web-devicons' -- required by many packages
+    use 'akinsho/bufferline.nvim'     -- requires nvim-web-devicons
+    use 'nvim-lualine/lualine.nvim'   -- status bar or use romgrk/barbar.nvim
     use { 'rose-pine/neovim', as = 'rose-pine' }
     use 'Mofiqul/dracula.nvim'
     use 'EdenEast/nightfox.nvim'
     use 'folke/tokyonight.nvim'
+    use 'nyoom-engineering/oxocarbon.nvim'
+    use 'dasupradyumna/midnight.nvim'
 
     -- EDITING
     use "tpope/vim-fugitive"                  -- Git Support for Neovim
@@ -66,24 +115,36 @@ return require('packer').startup(function(use)
     use { 'mg979/vim-visual-multi', branch = 'master' }
     use 'sheerun/vim-polyglot'
     use 'terrortylor/nvim-comment'
-    use 'johmsalas/text-case.nvim' -- An all in one plugin for converting text case in Neovim
-    -- use 'mbbill/undotree' -- Undo History Menu and increase it
+    use 'mbbill/undotree' -- Undo History Menu and increase it
     -- use 'folke/which-key.nvim' -- popup for available key
+    use 'ledger/vim-ledger'
+    use 'godlygeek/tabular'
+    use 'RRethy/vim-illuminate'                          -- underline/highlight same word
+    use { 'johmsalas/text-case.nvim', cmd = { 'Subs' } } -- FIX
+    -- An all in one plugin for converting text case in Neovim
+    -- need Telescope
     use {
         "kylechui/nvim-surround",
         tag = "*", -- Use for stability; omit to use `main` branch for the latest features
         config = function()
-            require("nvim-surround").setup({
-                -- Configuration here, or leave empty to use defaults
-            })
+            require("nvim-surround").setup()
         end
     }
     use {
         "windwp/nvim-autopairs",
         event = "InsertEnter",
         config = function()
-            require("nvim-autopairs").setup {}
+            require("nvim-autopairs").setup()
         end
+    }
+    use {
+        "L3MON4D3/LuaSnip",
+        tag = "v2.*",
+        -- run = "make install_jsregexp" -- optional
+        requires = {
+            "rafamadriz/friendly-snippets",
+            "molleweide/LuaSnip-snippets.nvim",
+        },
     }
 
     -- lsp-zero help you integrate nvim-cmp (an autocompletion plugin) and nvim-lspconfig

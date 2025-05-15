@@ -56,18 +56,41 @@ vim.keymap.set('n', '<leader>r', ':FzfLua oldfiles<CR>')
 -- 	builtin.grep_string({ search = vim.fn.input("Grep > ") })
 -- end)
 
+-- NOTE check this out
 -- Twiddle Case Function
-local function twiddle_case(str)
-  local result
-  if str:upper() == str then
-    result = str:lower()
-  elseif str:lower() == str then
-    result = str:gsub("(%w+)", function(word) return word:sub(1, 1):upper() .. word:sub(2) end)
-  else
-    result = str:upper()
-  end
-  return result
+-- function TwiddleCase(str)
+--   local result
+--   if str:upper() == str then
+--     result = str:lower()
+--   elseif str:lower() == str then
+--     result = str:gsub("(%w+)", function(word) return word:sub(1, 1):upper() .. word:sub(2) end)
+--   else
+--     result = str:upper()
+--   end
+--   return result
+-- end
+
+-- insert.txt - line:686
+-- For example, the following will map <Tab> to either actually insert a <Tab> if
+-- the current line is currently only whitespace, or start/continue a CTRL-N
+-- completion operation:
+function CleverTab()
+    local line = vim.api.nvim_get_current_line()
+    local col = vim.api.nvim_win_get_cursor(0)[2]  -- col is 0-based
+    local text_before_cursor = line:sub(1, col)
+    if text_before_cursor:match('^%s*$') then
+        return "\t"
+    else
+        return vim.api.nvim_replace_termcodes("<C-n>", true, true, true)
+    end
 end
 
+vim.keymap.set('i', '<Tab>', function()
+  return CleverTab()
+end, {expr = true})
+
+-- NOTE check this out
 -- Mapping for visual mode
-vim.keymap.set("v", '~', twiddle_case(vim.fn.getreg('"')))
+-- vim.keymap.set("v", '~', function()
+--   return TwiddleCase(vim.fn.getreg('"'))
+-- end)

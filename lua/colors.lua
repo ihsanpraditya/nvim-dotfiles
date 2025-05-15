@@ -1,15 +1,16 @@
-function trp_theme(color)
+function Colort(color)
   color = color or "default" -- this make 2nd parameter as default if color is empty
   vim.cmd.colorscheme(color)
   -- for transparency within terminal
   vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
   vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+  vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
 end
 
 if vim.g.neovide then
     vim.cmd.colorscheme("nightfox") -- I love nightfox as Neovide default theme
 else
-  trp_theme()
+  Colort()
 end
 
 if vim.g.colors_name == "desert"

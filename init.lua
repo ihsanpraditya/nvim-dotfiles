@@ -14,6 +14,7 @@ vim.loader.enable({ true }) -- might improve startup time but experimental
 -- COLORCOLUMN
 -- CONCEAL
 -- UPDATETIME
+-- COMPLETION
 -- DIRECTORY MODE
 -- PROVIDER
 -- Return to last position
@@ -63,6 +64,9 @@ vim.opt.concealcursor = 'nc'
 op.updatetime = 50
 
 -- op.colorcolumn = "80" -- show vertical line in column 80
+
+-- COMPLETION
+-- vim.opt.omnifunc = 'syntaxcomplete#Complete'
 
 -- DIRECTORY MODE
 vim.g.netrw_bufsettings = "noma nomod nonu nobl nowrap ro rnu"

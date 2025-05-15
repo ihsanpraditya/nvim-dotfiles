@@ -13,6 +13,11 @@
 
 -- ###################### START LANGUAGE SERVER CONFIG #######################
 -- HTML
+-- https://github.com/neovim/nvim-lspconfig/blob/master/lsp/html.lua
+-- To enable completion, install a snippet plugin and add the following override to your language client capabilities during setup.
+-- Enable (broadcasting) snippet capability for completion
+-- local htmlCapabilities = vim.lsp.protocol.make_client_capabilities()
+-- htmlCapabilities.textDocument.completion.completionItem.snippetSupport = true
 vim.lsp.config['html'] = {
   cmd = { 'vscode-html-language-server', '--stdio' },
   filetypes = { 'html', 'templ', 'blade' },
@@ -22,9 +27,11 @@ vim.lsp.config['html'] = {
     provideFormatter = true,
     embeddedLanguages = { css = true, javascript = true },
     configurationSection = { 'html', 'css', 'javascript' },
-  }
+  },
+  -- capabilites = htmlCapabilities,
 }
 
+-- CSS
 -- https://github.com/neovim/nvim-lspconfig/blob/master/lsp/cssls.lua
 vim.lsp.config['cssls'] = {
   cmd = { 'vscode-css-language-server', '--stdio' },
@@ -38,6 +45,7 @@ vim.lsp.config['cssls'] = {
   }
 }
 
+-- CSS Variable
 -- https://github.com/neovim/nvim-lspconfig/blob/master/lsp/css_variables.lua
 vim.lsp.config['css_variables'] = {
   cmd = { 'css-variables-language-server', '--stdio' },
@@ -308,7 +316,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(event)
     local id = vim.tbl_get(event, 'data', 'client_id')
     local client = id and vim.lsp.get_client_by_id(id)
-    if client == nil or not client.supports_method('textDocument/inlayHint') then
+    if client == nil or not client.supports_method('textDocument/inlayHint') then  -- supports_method() is deprecated
       return
     end
 
@@ -377,7 +385,7 @@ function Format()
   })
 end
 
--- Completion
+-- LSP Completion
 vim.opt.completeopt = {'menu', 'menuone', 'noinsert', 'noselect'}
 
 vim.api.nvim_create_autocmd('LspAttach', {
@@ -392,10 +400,18 @@ vim.api.nvim_create_autocmd('LspAttach', {
     vim.lsp.completion.enable(true, client_id, event.buf, {autotrigger = false})
 
     -- warning: this api is unstable
-    -- Trigger lsp completion manually using Ctrl + Space
-    vim.keymap.set('i', '<C-,>', '<cmd>lua vim.lsp.completion.trigger()<cr>')
+    -- Trigger lsp completion manually using Ctrl + ,
+        vim.keymap.set('i', '<c-space>', function()
+          vim.lsp.completion.get()
+        end)
   end
 })
+
+-- Snippet Completion in %:h/snippet.lua
+
+-- Bindings
+vim.api.nvim_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', { noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', { noremap = true, silent = true})
 
 -- Running the server
 -- Working with frontend
