@@ -37,13 +37,12 @@ op.tabstop = 2
 op.shiftwidth = 2
 op.expandtab = true
 
-op.swapfile = false
-op.backup = false
+op.swapfile = true
+op.backup = true
 
 -- UNDO / REDO
--- uncomment so the undo history is saved although exiting the buffer.
 -- op.undodir = os.getenv("HOME") .. "/.vim/undodir"
--- op.undofile = true
+op.undofile = true -- undo history persists although exiting the buffer.
 
 -- SEARCHING
 op.incsearch = true

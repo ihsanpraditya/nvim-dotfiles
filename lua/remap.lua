@@ -17,8 +17,8 @@ vim.keymap.set("n", "<leader>Q", ":q!<CR>")    -- force quit
 -- vim.keymap.set("n", "<leader>1", ':only<CR>') -- close other windows
 
 -- Buffer
-vim.keymap.set("n", "<leader>c", ':close<CR>')     -- close current buffer
-vim.keymap.set("n", "<leader>C", ':close!<CR>')    -- force close current buffe
+vim.keymap.set("n", "<leader>c", ':bdelete<CR>')     -- close current buffer
+vim.keymap.set("n", "<leader>C", ':bdelete!<CR>')    -- force close current buffe
 vim.keymap.set("n", "<leader>z", ':bprevious<CR>') -- go to previous buffer
 vim.keymap.set("n", "<leader>x", ':bnext<CR>')     -- go to next buffer
 
@@ -46,7 +46,7 @@ vim.keymap.set("n", "<leader>O", 'O<ESC>')                      -- insert up bla
 vim.keymap.set("n", "<leader>o", 'o<ESC>')                      -- insert down blank line
 vim.keymap.set("n", "<leader>t", ':NvimTreeToggle<CR>')         -- toggle file explorer
 vim.keymap.set("n", "<leader>y", ':NvimTreeFindFileToggle<CR>') -- toggle file explorer
--- vim.keymap.set("n", "<leader>u", ':UndotreeToggle<CR>') -- toggle the undo history menu
+vim.keymap.set("n", "<leader>u", ':UndotreeToggle<CR>') -- toggle the undo history menu
 -- vim.keymap.set("n", "<leader>U", ':UndotreeFocus<CR>') -- switch cursor to undo menu
 
 vim.keymap.set('n', '<leader>f', ':FzfLua files<CR>')

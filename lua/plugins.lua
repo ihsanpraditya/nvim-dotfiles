@@ -2,7 +2,7 @@
 -- so you don't have to type it anymore
 -- WARNING need to migrate to lazy.nvim
 ---------- INDEX ----------
--- app features
+------- app features ------
 --  plenary
 --  fzf (fuzzy finder)
 --  dotenv integration
@@ -10,12 +10,15 @@
 --  nvim-tree file manager
 --  notify
 --  todo magic comment
---  Trouble: for diagnotisc
 --  data-viewer for CSV,TSV
+--  nui.nvim: UI Component Library for Neovim
+--  markdown-preview
+--  latex-lsp -- TODO: do I need to separate it?
+--  Trouble: for diagnotisc
 --  sqlua SQL integration
 --  neominimap
 --  dashboard-nvim
--- appearance
+------- appearance -------
 --  devicons
 --  bufferline
 --  lualine
@@ -26,7 +29,7 @@
 --    tokyonight
 --    oxocarbon
 --    midnight
--- editing
+------- editing ---------
 --  vim-fugitive Git integration
 --  gitsigns Git integration for buffers
 --  diffview simplifying Git diff split
@@ -62,17 +65,34 @@ return require('packer').startup(function(use)
     use 'nvim-tree/nvim-tree.lua'
     use 'rcarriga/nvim-notify'     -- TODO use it
     use 'folke/todo-comments.nvim' -- require plenary, need Telescope for better use
+    use 'VidocqH/data-viewer.nvim' -- require plenary FIX
+    use 'MunifTanjim/nui.nvim'
+    use 'iamcco/markdown-preview.nvim'
+    -- cd ~/.local/share/nvim/site/pack/packer/start/
+    -- git clone https://github.com/iamcco/markdown-preview.nvim.git
+    -- cd markdown-preview.nvim
+    -- npx --yes yarn install
+    -- npx --yes yarn build
+    -- use {
+    --     'f3fora/nvim-texlabconfig',
+    --     config = function()
+    --     require('texlabconfig').setup()
+    -- end,
+    -- }
     -- use {
     --     'folke/trouble.nvim',
     --     cmd = 'Trouble'
     -- }
-    use 'VidocqH/data-viewer.nvim' -- require plenary FIX
     use {
-        'xemptuous/sqlua.nvim',
-        cmd = 'SQLua',
-        opt = true,
+        "kndndrj/nvim-dbee",
+        requires = {
+            "MunifTanjim/nui.nvim",
+        },
+        run = function()
+            require("dbee").install()
+        end,
         config = function()
-            require('sqlua').setup()
+            require("dbee").setup()
         end
     }
     use {
