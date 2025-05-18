@@ -14,7 +14,7 @@
 ---------------------------
 
 -- DIRECTORY
-vim.keymap.set("n", "<leader>d", ':Explore<CR>')
+-- vim.keymap.set("n", "<leader>d", ':Explore<CR>')
 vim.keymap.set("n", "<leader>e", ':e <C-R>=expand("%:p:h") . "/" <CR>')
 vim.keymap.set("n", "<leader>E", ':tabe <C-R>=expand("%:p:h") . "/" <CR>')
 vim.keymap.set("n", "<leader>V", ':vsp <C-R>=expand("%:p:h") . "/" <CR>')
@@ -37,7 +37,7 @@ vim.keymap.set("n", "<leader>x", ':bnext<CR>')     -- go to next buffer
 vim.keymap.set("n", "<leader>vz", ':sbprevious<CR>') -- split then go to previous buffer
 vim.keymap.set("n", "<leader>vx", ':sbnext<CR>')     -- split then go to next buffer
 vim.keymap.set("n", "<leader>vv", ':vsplit<CR>')     -- split vertically
-vim.keymap.set("n", "<leader>hv", ':split<CR>')      -- split horizontally
+vim.keymap.set("n", "<leader>vh", ':split<CR>')      -- split horizontally
 
 -- TAB WINDOW
 vim.keymap.set("n", "<leader>s", ':tabnext<CR>')     -- go to next tab
@@ -77,13 +77,6 @@ end
 
 vim.keymap.set('i', '<Tab>', function() return CleverTab() end, {expr = true})
 
--- PLUGIN
--- Others: Plugins remap at after/plugin/<plugin_name>.lua
-
--- NvimTree
-vim.keymap.set("n", "<leader>t", ':NvimTreeToggle<CR>')         -- toggle file explorer
-vim.keymap.set("n", "<leader>y", ':NvimTreeFindFileToggle<CR>') -- toggle file explorer
---
 -- NEOVIDE
 if vim.g.neovide then
   vim.keymap.set('n', '<C-S-s>', ':w<CR>')      -- Save

@@ -6,21 +6,17 @@ return {
   {"ledger/vim-ledger"},
   {"godlygeek/tabular"},
   {"RRethy/vim-illuminate"},
-  {"tpope/vim-sleuth"},
+  {"tpope/vim-sleuth"}, -- Heuristically set buffer options 
   {"mg979/vim-visual-multi", branch = "master" },
   {
     "lukas-reineke/indent-blankline.nvim",
     main = "ibl",
-    ---@module "ibl"
-    ---@type ibl.config
     opts = {},
   },
   {
     'windwp/nvim-autopairs',
     event = "InsertEnter",
-    config = true
-    -- use opts = {} for passing setup options
-    -- this is equivalent to setup({}) function
+    opts = {}
   },
   {
     "L3MON4D3/LuaSnip",
@@ -32,20 +28,16 @@ return {
     "jiaoshijie/undotree",
     config = true,
     keys = { -- load the plugin only when using it's keybinding:
-      { "<leader>u", "<cmd>lua require('undotree').toggle()<cr>" },
+      { "<leader>u", "<cmd>lua require('undotree').toggle()<CR>" },
     },
   },
   {
     "kylechui/nvim-surround",
     version = "^3.0.0", -- Use for stability; omit to use `main` branch for the latest features
     event = "VeryLazy",
-    config = function()
-      require("nvim-surround").setup({
-        -- Configuration here, or leave empty to use defaults
-      })
-    end
+    opts = {}
   },
-  { 
+  {
     "numToStr/Comment.nvim",
     opts = {
       toggler = {
@@ -70,16 +62,12 @@ return {
       { "ga.", "<cmd>TextCaseOpenTelescope<CR>", mode = { "n", "x" }, desc = "Telescope" },
     },
     cmd = {
-      -- NOTE: The Subs command name can be customized via the option "substitude_command_name"
       "Subs",
       "TextCaseOpenTelescope",
       "TextCaseOpenTelescopeQuickChange",
       "TextCaseOpenTelescopeLSPChange",
       "TextCaseStartReplacingCommand",
     },
-    -- If you want to use the interactive feature of the `Subs` command right away, text-case.nvim
-    -- has to be loaded on startup. Otherwise, the interactive feature of the `Subs` will only be
-    -- available after the first executing of it or after a keymap of text-case.nvim has been used.
     lazy = false,
   },
 }
