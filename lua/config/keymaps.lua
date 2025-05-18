@@ -1,60 +1,104 @@
--- See which-key.txt for custom mapping label
--- Leader
-vim.g.mapleader = " "
+-- Keymaps are automatically loaded on the VeryLazy event
+-- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
+-- Add any additional keymaps here
+---------- INDEX ----------
+-- DIRECTORY
+-- FILES
+-- BUFFER
+-- SPLIT
+-- TAB WINDOW
+-- <ESC>
+-- MISC
+-- PLUGIN
+-- NEOVIDE
+---------------------------
 
--- Directory
+-- DIRECTORY
 vim.keymap.set("n", "<leader>d", ':Explore<CR>')
 vim.keymap.set("n", "<leader>e", ':e <C-R>=expand("%:p:h") . "/" <CR>')
 vim.keymap.set("n", "<leader>E", ':tabe <C-R>=expand("%:p:h") . "/" <CR>')
 vim.keymap.set("n", "<leader>V", ':vsp <C-R>=expand("%:p:h") . "/" <CR>')
 
 
--- Files
+-- FILES
 -- vim.keymap.set("n", "<leader>s", ':source<CR>') -- sourcing
 vim.keymap.set("n", "<leader>w", ':write<CR>') -- saving
 vim.keymap.set("n", "<leader>q", ':quit<CR>')  -- quitting
 vim.keymap.set("n", "<leader>Q", ":q!<CR>")    -- force quit
 -- vim.keymap.set("n", "<leader>1", ':only<CR>') -- close other windows
 
--- Buffer
+-- BUFFER
 vim.keymap.set("n", "<leader>c", ':bdelete<CR>')     -- close current buffer
 vim.keymap.set("n", "<leader>C", ':bdelete!<CR>')    -- force close current buffe
 vim.keymap.set("n", "<leader>z", ':bprevious<CR>') -- go to previous buffer
 vim.keymap.set("n", "<leader>x", ':bnext<CR>')     -- go to next buffer
 
--- Split
+-- SPLIT
 vim.keymap.set("n", "<leader>vz", ':sbprevious<CR>') -- split then go to previous buffer
 vim.keymap.set("n", "<leader>vx", ':sbnext<CR>')     -- split then go to next buffer
 vim.keymap.set("n", "<leader>vv", ':vsplit<CR>')     -- split vertically
 vim.keymap.set("n", "<leader>hv", ':split<CR>')      -- split horizontally
 
--- Tab
+-- TAB WINDOW
 vim.keymap.set("n", "<leader>s", ':tabnext<CR>')     -- go to next tab
 vim.keymap.set("n", "<leader>a", ':tabprevious<CR>') -- go to previous tab
 -- vim.keymap.set("n", "<S-t>", ':tabnew<CR>') -- create new tab
 
--- <Esc>
+-- <ESC>
 vim.keymap.set("i", "jk", "<Esc>")       -- map <jk> to <Esc>
 vim.keymap.set("t", "jk", "<C-\\><C-n>") -- map <jk> to <Esc>
 
--- Others: Plugins remap at after/plugin/<plugin_name>.lua
+-- MISC
+-- open new buffer
 vim.keymap.set("n", "<leader>n", ':enew<CR>')
-vim.keymap.set("n", "<ESC>", ':nohlsearch<CR>')                 -- map <ESC> to clear highlight search
-vim.keymap.set("n", "<leader>.", ":lcd %:p:h<CR>")              -- make directory to the current buffer
--- vim.keymap.set("n", "<F3>",":Telescope colorscheme<CR>")
-vim.keymap.set("n", "<leader>O", 'O<ESC>')                      -- insert up blank line
-vim.keymap.set("n", "<leader>o", 'o<ESC>')                      -- insert down blank line
+
+-- clear search highlight
+vim.keymap.set("n", "<ESC>", ':nohlsearch<CR>')
+
+-- set pwd to the current buffer cd
+vim.keymap.set("n", "<leader>.", ":lcd %:p:h<CR>")
+                -- insert up blank line
+vim.keymap.set("n", "<leader>O", 'O<ESC>')
+-- insert down blank line
+vim.keymap.set("n", "<leader>o", 'o<ESC>')
+
+-- clever tab indent
+-- see: insert.txt +686
+function CleverTab()
+    local line = vim.api.nvim_get_current_line()
+    local col = vim.api.nvim_win_get_cursor(0)[2]  -- col is 0-based
+    local text_before_cursor = line:sub(1, col)
+    if text_before_cursor:match('^%s*$') then
+        return "\t"
+    else
+        return vim.api.nvim_replace_termcodes("<C-n>", true, true, true)
+    end
+end
+
+vim.keymap.set('i', '<Tab>', function() return CleverTab() end, {expr = true})
+
+-- PLUGIN
+-- Others: Plugins remap at after/plugin/<plugin_name>.lua
+
+-- NvimTree
 vim.keymap.set("n", "<leader>t", ':NvimTreeToggle<CR>')         -- toggle file explorer
 vim.keymap.set("n", "<leader>y", ':NvimTreeFindFileToggle<CR>') -- toggle file explorer
-vim.keymap.set("n", "<leader>u", ':UndotreeToggle<CR>') -- toggle the undo history menu
--- vim.keymap.set("n", "<leader>U", ':UndotreeFocus<CR>') -- switch cursor to undo menu
+--
+-- NEOVIDE
+if vim.g.neovide then
+  vim.keymap.set('n', '<C-S-s>', ':w<CR>')      -- Save
+  vim.keymap.set('v', '<C-S-c>', '"+y')         -- Copy
+  vim.keymap.set('n', '<C-S-v>', '"+P')         -- Paste normal mode
+  vim.keymap.set('v', '<C-S-v>', '"+P')         -- Paste visual mode
+  vim.keymap.set('c', '<C-S-v>', '<C-r>+')      -- Paste command mode
+  vim.keymap.set('i', '<C-S-v>', '<ESC>l"+Pli') -- Paste insert mode
 
-vim.keymap.set('n', '<leader>f', ':FzfLua files<CR>')
-vim.keymap.set('n', '<leader>g', ':FzfLua live_grep<CR>')
-vim.keymap.set('n', '<leader>r', ':FzfLua oldfiles<CR>')
--- vim.keymap.set('n', '<leader>fx', function()
--- 	builtin.grep_string({ search = vim.fn.input("Grep > ") })
--- end)
+  -- Allow clipboard copy paste in neovim
+  vim.api.nvim_set_keymap('', '<C-S-v>', '+p<CR>', { noremap = true, silent = true })
+  vim.api.nvim_set_keymap('!', '<C-S-v>', '<C-r>+', { noremap = true, silent = true })
+  vim.api.nvim_set_keymap('t', '<C-S-v>', '<C-r>+', { noremap = true, silent = true })
+  vim.api.nvim_set_keymap('v', '<C-S-v>', '<C-r>+', { noremap = true, silent = true })
+end
 
 -- NOTE check this out
 -- Twiddle Case Function
@@ -69,25 +113,6 @@ vim.keymap.set('n', '<leader>r', ':FzfLua oldfiles<CR>')
 --   end
 --   return result
 -- end
-
--- insert.txt - line:686
--- For example, the following will map <Tab> to either actually insert a <Tab> if
--- the current line is currently only whitespace, or start/continue a CTRL-N
--- completion operation:
-function CleverTab()
-    local line = vim.api.nvim_get_current_line()
-    local col = vim.api.nvim_win_get_cursor(0)[2]  -- col is 0-based
-    local text_before_cursor = line:sub(1, col)
-    if text_before_cursor:match('^%s*$') then
-        return "\t"
-    else
-        return vim.api.nvim_replace_termcodes("<C-n>", true, true, true)
-    end
-end
-
-vim.keymap.set('i', '<Tab>', function()
-  return CleverTab()
-end, {expr = true})
 
 -- NOTE check this out
 -- Mapping for visual mode

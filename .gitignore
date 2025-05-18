@@ -1,6 +1,7 @@
 .DS_Store
 **/.DS_Store
 plugin/packer_compiled.lua
+tags
 
 # Created by https://www.toptal.com/developers/gitignore/api/linux,vim
 # Edit at https://www.toptal.com/developers/gitignore?templates=linux,vim
@@ -41,3 +42,6 @@ tags
 [._]*.un~
 
 # End of https://www.toptal.com/developers/gitignore/api/linux,vim
+
+*.json
+*.log

@@ -4,7 +4,11 @@
 ---------- INDEX ----------
 ------- app features ------
 --  plenary
+--  mason: Easily install and manage LSP servers, DAP servers, linters, and formatters
+--  mason-lspconfig integration
+--  lspconfig: quickstart LSP
 --  fzf (fuzzy finder)
+--  Telescope
 --  dotenv integration
 --  nvim-dap: Debug Adapter Protocol client
 --  nvim-tree file manager
@@ -12,6 +16,7 @@
 --  todo magic comment
 --  data-viewer for CSV,TSV
 --  nui.nvim: UI Component Library for Neovim
+--  fidget.nvim: Extensible UI for Neovim notifications and LSP progress messages.
 --  markdown-preview
 --  latex-lsp -- TODO: do I need to separate it?
 --  Trouble: for diagnotisc
@@ -30,10 +35,12 @@
 --    oxocarbon
 --    midnight
 ------- editing ---------
---  vim-fugitive Git integration
---  gitsigns Git integration for buffers
---  diffview simplifying Git diff split
---  indent
+--  vim-fugitive - Git support for Neovim
+--  vim-rhubarb - GitHub support
+--  gitsigns - Git integration for buffers
+--  diffview - Git diff split simple
+--  indent-blankline
+--  vim-sleuth - detect tabstop and shiftwidth automatically
 --  visual-multi
 --  nvim-polyglot (Syntax)
 --  nvim-comment
@@ -59,7 +66,17 @@ return require('packer').startup(function(use)
     use "nvim-lua/plenary.nvim"
     --  provides a collection of useful functions
     --  and utilities to simplify plugin development.
-    use 'ibhagwan/fzf-lua' -- NOTE planning to use Telescope
+    use "mason-org/mason.nvim"
+    use "mason-org/mason-lspconfig.nvim"
+    use "neovim/nvim-lspconfig"
+    use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
+    use {
+        "nvim-treesitter/nvim-treesitter-textobjects",
+        after = "nvim-treesitter"
+    }
+    -- use 'ibhagwan/fzf-lua' -- NOTE planning to use Telescope
+    -- use 'nvim-telescope/telescope.nvim' -- requires plenary
+    -- use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release' }
     use 'ellisonleao/dotenv.nvim'
     -- use 'mfussenegger/nvim-dap'
     use 'nvim-tree/nvim-tree.lua'
@@ -67,6 +84,7 @@ return require('packer').startup(function(use)
     use 'folke/todo-comments.nvim' -- require plenary, need Telescope for better use
     use 'VidocqH/data-viewer.nvim' -- require plenary FIX
     use 'MunifTanjim/nui.nvim'
+    use 'j-hui/fidget.nvim'
     use 'iamcco/markdown-preview.nvim'
     -- cd ~/.local/share/nvim/site/pack/packer/start/
     -- git clone https://github.com/iamcco/markdown-preview.nvim.git
@@ -128,13 +146,16 @@ return require('packer').startup(function(use)
     use 'dasupradyumna/midnight.nvim'
 
     -- EDITING
-    use "tpope/vim-fugitive"                  -- Git Support for Neovim
-    use "lewis6991/gitsigns.nvim"             -- Git integration for buffers
-    use "sindrets/diffview.nvim"              -- Single tabpage interface for easily cycling through diffs for all modified files for any git rev.
+    use "tpope/vim-fugitive"
+    use "tpope/vim-rhubarb"
+    use "lewis6991/gitsigns.nvim"
+    use "sindrets/diffview.nvim"
     use 'lukas-reineke/indent-blankline.nvim' -- indent line
+    use "tpope/vim-sleuth"
     use { 'mg979/vim-visual-multi', branch = 'master' }
     use 'sheerun/vim-polyglot'
     use 'terrortylor/nvim-comment'
+    -- use 'numToStr/Comment.nvim'
     use 'mbbill/undotree' -- Undo History Menu and increase it
     -- use 'folke/which-key.nvim' -- popup for available key
     use 'ledger/vim-ledger'
