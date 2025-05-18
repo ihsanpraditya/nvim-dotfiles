@@ -1,10 +1,33 @@
 return {
-  { "nvim-tree/nvim-tree.lua" },
-  { "ellisonleao/dotenv.nvim", opts = {}, cmd = { "Dotenv" } },
+  {
+    "nvim-tree/nvim-tree.lua",
+    opts = {
+      sort = {
+        sorter = "case_sensitive",
+      },
+      view = {
+        width = 30,
+      },
+      renderer = {
+        group_empty = true,
+      },
+      filters = {
+        dotfiles = true,
+      },
+    }
+  },
+  {
+    "ellisonleao/dotenv.nvim",
+    opts = {
+      enable_on_load = true,
+      verbose = false
+    },
+    cmd = { "Dotenv" }
+  },
   { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
   { "rcarriga/nvim-notify" },
-  { "mason-org/mason.nvim", opts = {}, cmd = { "Mason" } },
-  { "j-hui/fidget.nvim", opts = {} },
+  { "mason-org/mason.nvim",            opts = {},          cmd = { "Mason" } },
+  { "j-hui/fidget.nvim",               opts = {} },
   {
     "folke/todo-comments.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
