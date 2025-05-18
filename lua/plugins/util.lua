@@ -35,7 +35,55 @@ return {
     },
     cmd = { "Dotenv" }
   },
-  { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    build = ":TSUpdate",
+    opts = {
+      highlight = {
+        enable = true,
+      },
+      indent = { enable = true },
+      autotag = { enable = true },
+      ensure_installed = {
+        "bash",
+        "markdown",
+        "html",
+        "css",
+        "javascript",
+        "tsx",
+        "php",
+        "blade",
+        "query",
+        "lua",
+        "vim",
+      },
+      auto_install = true,
+    },
+    config = function(_, opts)
+      local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+
+      parser_config.blade = {
+        install_info = {
+          url = "https://github.com/EmranMR/tree-sitter-blade",
+          files = { "src/parser.c" },
+          branch = "main",
+        },
+        filetype = "blade",
+      }
+
+      vim.filetype.add({
+        pattern = {
+          [".*%.blade%.php"] = "blade",
+        },
+      })
+
+      require("nvim-treesitter.configs").setup(opts)
+    end,
+  },
+  {
+    "nvim-treesitter/nvim-treesitter-textobjects",
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+  },
   { "rcarriga/nvim-notify" },
   {
     "mason-org/mason.nvim",
@@ -43,7 +91,7 @@ return {
     cmd = { "Mason" }
   },
   -- Extensible UI for Neovim notifications and LSP progress messages.
-  { "j-hui/fidget.nvim", opts = {} },
+  { "j-hui/fidget.nvim",   opts = {} },
   {
     "folke/todo-comments.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
@@ -76,6 +124,7 @@ return {
       vim.keymap.set('n', '<leader>fg', fzf.live_grep, { desc = 'Telescope live grep' })
       vim.keymap.set('n', '<leader>fb', fzf.buffers, { desc = 'Telescope buffers' })
       vim.keymap.set('n', '<leader>fh', fzf.help_tags, { desc = 'Telescope help tags' })
+      vim.keymap.set('n', '<leader>fr', fzf.oldfiles, { desc = 'Telescope recent files' })
     end
   },
   {

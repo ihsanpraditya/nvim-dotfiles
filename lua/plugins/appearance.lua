@@ -4,7 +4,11 @@ return {
     dependencies = {
       'nvim-tree/nvim-web-devicons'
     },
-    opts = {}
+    opts = {
+      options = {
+        mode = "tabs" -- set to "tabs" to only show tabpages instead
+      }
+    }
   },
   {
     'nvim-lualine/lualine.nvim',
