@@ -63,23 +63,23 @@ return require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
 
     -- APP FEATURES
-    use "nvim-lua/plenary.nvim"
+    -- use "nvim-lua/plenary.nvim"
     --  provides a collection of useful functions
     --  and utilities to simplify plugin development.
-    use "mason-org/mason.nvim"
-    use "mason-org/mason-lspconfig.nvim"
-    use "neovim/nvim-lspconfig"
-    use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
-    use {
-        "nvim-treesitter/nvim-treesitter-textobjects",
-        after = "nvim-treesitter"
-    }
+    -- use "mason-org/mason.nvim"
+    -- use "mason-org/mason-lspconfig.nvim"
+    -- use "neovim/nvim-lspconfig"
+    -- use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
+    -- use {
+    --     "nvim-treesitter/nvim-treesitter-textobjects",
+    --     after = "nvim-treesitter"
+    -- }
     -- use 'ibhagwan/fzf-lua' -- NOTE planning to use Telescope
     -- use 'nvim-telescope/telescope.nvim' -- requires plenary
     -- use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release' }
     use 'ellisonleao/dotenv.nvim'
     -- use 'mfussenegger/nvim-dap'
-    use 'nvim-tree/nvim-tree.lua'
+    -- use 'nvim-tree/nvim-tree.lua'
     use 'rcarriga/nvim-notify'     -- TODO use it
     use 'folke/todo-comments.nvim' -- require plenary, need Telescope for better use
     use 'VidocqH/data-viewer.nvim' -- require plenary FIX
