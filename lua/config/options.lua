@@ -9,6 +9,7 @@
 -- SEARCHING
 -- COLORCOLUMN
 -- CONCEAL
+-- FOLDING
 -- UPDATETIME
 -- COMPLETION
 -- DIRECTORY MODE
@@ -54,7 +55,12 @@ vim.opt.isfname:append("@-@")
 
 -- CONCEAL
 vim.opt.conceallevel = 2
-vim.opt.concealcursor = 'nc'
+vim.opt.concealcursor = ''
+
+-- FOLDING
+vim.g.markdown_folding = 1
+vim.g.org_folding = 1
+vim.g.org_indent_mode = 0
 
 -- UPDATETIME
 op.updatetime = 50
@@ -89,7 +95,7 @@ else
   vim.opt.background = "dark"
 end
 
-Colort(default)
+Colort("default")
 ----- light color -----
 -- Blue (but set bg to dark, wkwk)
 -- delek 

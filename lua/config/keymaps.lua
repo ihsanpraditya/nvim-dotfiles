@@ -64,18 +64,19 @@ vim.keymap.set("n", "<leader>o", 'o<ESC>')
 
 -- clever tab indent
 -- see: insert.txt +686
-function CleverTab()
-    local line = vim.api.nvim_get_current_line()
-    local col = vim.api.nvim_win_get_cursor(0)[2]  -- col is 0-based
-    local text_before_cursor = line:sub(1, col)
-    if text_before_cursor:match('^%s*$') then
-        return "\t"
-    else
-        return vim.api.nvim_replace_termcodes("<C-n>", true, true, true)
-    end
-end
-
-vim.keymap.set('i', '<Tab>', function() return CleverTab() end, {expr = true})
+-- commented because it triggered event after whitespace if the line is not empty
+-- function CleverTab()
+--     local line = vim.api.nvim_get_current_line()
+--     local col = vim.api.nvim_win_get_cursor(0)[2]  -- col is 0-based
+--     local text_before_cursor = line:sub(1, col)
+--     if text_before_cursor:match('^ *$') then
+--         return "\t"
+--     else
+--         return vim.api.nvim_replace_termcodes("<C-n>", true, true, true)
+--     end
+-- end
+--
+-- vim.keymap.set('i', '<Tab>', function() return CleverTab() end, {expr = true})
 
 -- NEOVIDE
 if vim.g.neovide then

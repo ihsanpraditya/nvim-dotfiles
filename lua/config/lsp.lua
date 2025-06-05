@@ -68,13 +68,7 @@ vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
 --   end
 -- })
 --
--- I prefer manually format
-function Format()
-  vim.lsp.buf.format({
-    async = false,
-    timeout_ms = 10000,
-  })
-end
+-- I prefer manually format with function defined in function.lua
 
 -- LSP Completion
 vim.opt.completeopt = {'menu', 'menuone', 'noinsert', 'noselect'}
@@ -110,13 +104,13 @@ vim.lsp.enable('html')
 vim.lsp.enable('cssls')
 -- vim.lsp.enable('cssvar')
 -- vim.lsp.enable('cssmodule')
-vim.lsp.enable('jsquicklint')
+-- vim.lsp.enable('jsquicklint') -- javascript
 vim.lsp.enable('bashls')
 -- vim.lsp.enable('volar') -- done by ts_ls if you want
 -- vim.lsp.enable('emmet')  -- not yet configured
 
 -- Working with backend
--- vim.lsp.enable('tsls')
+vim.lsp.enable('tsls') -- typescript, javascript
 vim.lsp.enable('intelephense')  -- php
 vim.lsp.enable('laravells')
 vim.lsp.enable('marksman')  -- markdown
@@ -125,3 +119,5 @@ vim.lsp.enable('marksman')  -- markdown
 vim.lsp.enable('vimls') -- vimscript
 vim.lsp.enable('luals') -- for Neovim Lua config
 vim.lsp.enable('pylsp')  -- python
+-- vim.lsp.enable('prettier')
+vim.lsp.enable('textlsp') -- text,TeX, Org

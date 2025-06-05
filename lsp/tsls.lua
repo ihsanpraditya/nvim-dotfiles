@@ -10,6 +10,16 @@ return {
         location = "/usr/local/lib/node_modules/@vue/typescript-plugin",
         languages = { "javascript", "typescript", "vue" }
       }
+    },
+    preferences = {
+      includeInlayParameterNameHints = 'none', -- 'none' | 'literals' | 'all'
+      includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+      includeInlayFunctionParameterTypeHints = false,
+      includeInlayVariableTypeHints = false,
+      includeInlayVariableTypeHintsWhenTypeMatchesName = false,
+      includeInlayPropertyDeclarationTypeHints = false,
+      includeInlayFunctionLikeReturnTypeHints = false,
+      includeInlayEnumMemberValueHints = true
     }
   }
 }

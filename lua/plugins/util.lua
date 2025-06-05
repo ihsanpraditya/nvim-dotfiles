@@ -1,3 +1,23 @@
+-- index
+-- nvim-tree: file manager
+-- dotenv
+-- treesitter
+-- mason: external tools manager
+-- fidget
+-- todo-comments
+-- data-viewer: CSV, XLS
+-- markdown
+-- telescope: Ctrl-P
+-- dbee: database integration
+-- trouble: diagnostics list
+-- Alpha: dashboard
+-- neominimap
+-- laravel.nvim
+-- blade-nav.nvim
+-- vim-blade
+-- conform: formatter engine
+-- orgmode
+-- pomodoro
 return {
   {
     "nvim-tree/nvim-tree.lua",
@@ -21,10 +41,10 @@ return {
         view = { width = 30, },
         renderer = { group_empty = true, },
         filters = { dotfiles = true, },
-        on_attach = my_on_attach                                      -- keymaps in tree view
+        on_attach = my_on_attach                                       -- keymaps in tree view
       }
-      vim.keymap.set("n", "<leader>t", ':NvimTreeToggle<CR>')         -- toggle file explorer
-      vim.keymap.set("n", "<leader>y", ':NvimTreeFindFileToggle<CR>') -- toggle file explorer
+      vim.keymap.set("n", "<leader>t", ':NvimTreeToggle<CR>')          -- toggle file explorer
+      vim.keymap.set("n", "<leader>y", ':NvimTreeFindFileToggle!<CR>') -- toggle file explorer
     end
   },
   {
@@ -41,9 +61,31 @@ return {
     opts = {
       highlight = {
         enable = true,
+        additional_vim_regex_highlighting = true,
       },
       indent = { enable = true },
-      autotag = { enable = true },
+      autotag = {
+        enable = true,
+        enable_rename = true,
+        enable_close = true,
+        enable_close_on_slash = true,
+        filetypes = {
+          "html",
+          "javascript",
+          "typescript",
+          "javascriptreact",
+          "typescriptreact",
+          "svelte",
+          "vue",
+          "tsx",
+          "jsx",
+          "rescript",
+          "css",
+          "lua",
+          "xml",
+          "markdown",
+        },
+      },
       ensure_installed = {
         "bash",
         "markdown",
@@ -52,12 +94,17 @@ return {
         "javascript",
         "tsx",
         "php",
-        "blade",
         "query",
         "lua",
         "vim",
       },
-      auto_install = true,
+      auto_install = false,
+      incremental_selection = {
+        enable = false
+      },
+      -- matchup = {
+      --   enable = true
+      -- }
     },
     config = function(_, opts)
       local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
@@ -81,17 +128,18 @@ return {
     end,
   },
   {
-    "nvim-treesitter/nvim-treesitter-textobjects",
-    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    "rcarriga/nvim-notify",
+    lazy = true,
+    opts = {
+      background_colour = "#000000", -- transparent
+    }
   },
-  { "rcarriga/nvim-notify" },
   {
     "mason-org/mason.nvim",
-    opts = {},
-    cmd = { "Mason" }
+    opts = {}
   },
   -- Extensible UI for Neovim notifications and LSP progress messages.
-  { "j-hui/fidget.nvim",   opts = {} },
+  { "j-hui/fidget.nvim",   lazy = true },
   {
     "folke/todo-comments.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
@@ -118,6 +166,11 @@ return {
     'nvim-telescope/telescope.nvim',
     tag = '0.1.8',
     dependencies = { 'nvim-lua/plenary.nvim' },
+    opts = {
+      defaults = {
+        find_command = "fzf"
+      }
+    },
     config = function()
       local fzf = require('telescope.builtin')
       vim.keymap.set('n', '<leader>ff', fzf.find_files, { desc = 'Telescope find files' })
@@ -245,5 +298,84 @@ return {
         auto_enable = false,
       }
     end,
+  },
+  {
+    "adalessa/laravel.nvim",
+    dependencies = {
+      "tpope/vim-dotenv",
+      "nvim-telescope/telescope.nvim",
+      "MunifTanjim/nui.nvim",
+      "kevinhwang91/promise-async",
+    },
+    cmd = { "Laravel" },
+    keys = {
+      { "<leader>la", ":Laravel artisan<cr>" },
+      { "<leader>lr", ":Laravel routes<cr>" },
+      { "<leader>lm", ":Laravel related<cr>" },
+    },
+    event = { "VeryLazy" },
+    opts = {},
+    config = true,
+  },
+  {
+    'ricardoramirezr/blade-nav.nvim',
+    ft = { 'blade', 'php' }, -- optional, improves startup time
+    opts = {
+      -- This applies for nvim-cmp and coq, for blink refer to the configuration of this plugin
+      close_tag_on_complete = true, -- default: true
+    },
+  },
+  { "jwalton512/vim-blade" },
+  {
+    'stevearc/conform.nvim', -- Lightweight yet powerful formatter plugin for Neovim
+    opts = {
+      formatters_by_ft = {
+        typescript = { "prettier" },
+      }
+    },
+  },
+  -- {
+  --   'nvim-orgmode/orgmode',
+  --   event = 'VeryLazy',
+  --   ft = { 'org' },
+  --   opts = {
+  --     org_agenda_files = '~/Documents/mynotes/orgfiles/**/*',
+  --     org_default_notes_file = '~/Documents/mynotes/orgfiles/refile.org',
+  --     org_adapt_indentation = false,
+  --     mappings = {
+  --       agenda = {
+  --         org_agenda_show_help = 'g?',
+  --         org_agenda_later = '>',
+  --         org_agenda_earlier = '<',
+  --         org_agenda_goto_today = {'.', 'T'}
+  --       }
+  --     }
+  --   }
+  -- },
+  {
+    "nvim-neorg/neorg",
+    lazy = false,  -- Disable lazy loading as some `lazy.nvim` distributions set `lazy = true` by default
+    version = "*", -- Pin Neorg to the latest stable release
+    config = true,
+  },
+  {
+    "epwalsh/pomo.nvim",
+    version = "*", -- Recommended, use latest release instead of latest commit
+    lazy = true,
+    cmd = { "TimerStart", "TimerRepeat", "TimerSession" },
+    opts = {
+      sessions = {
+        pomodoro = {
+          { name = "Work",        duration = "25m" },
+          { name = "Short Break", duration = "5m" },
+          { name = "Work",        duration = "25m" },
+          { name = "Short Break", duration = "5m" },
+          { name = "Work",        duration = "25m" },
+          { name = "Long Break",  duration = "15m" },
+        }
+      }
+    },
   }
+  -- { "michaelb/sniprun" },
+  -- { "dhruvasagar/vim-table-mode" }
 }
