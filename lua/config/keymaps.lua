@@ -8,6 +8,7 @@
 -- SPLIT
 -- TAB WINDOW
 -- <ESC>
+-- LSP
 -- MISC
 -- PLUGIN
 -- NEOVIDE
@@ -29,7 +30,7 @@ vim.keymap.set("n", "<leader>Q", ":q!<CR>")    -- force quit
 
 -- BUFFER
 vim.keymap.set("n", "<leader>c", ':bdelete<CR>')     -- close current buffer
-vim.keymap.set("n", "<leader>C", ':bdelete!<CR>')    -- force close current buffe
+-- vim.keymap.set("n", "<leader>C", ':bdelete!<CR>')    -- force close current buffe
 vim.keymap.set("n", "<leader>z", ':bprevious<CR>') -- go to previous buffer
 vim.keymap.set("n", "<leader>x", ':bnext<CR>')     -- go to next buffer
 
@@ -38,6 +39,15 @@ vim.keymap.set("n", "<leader>vz", ':sbprevious<CR>') -- split then go to previou
 vim.keymap.set("n", "<leader>vx", ':sbnext<CR>')     -- split then go to next buffer
 vim.keymap.set("n", "<leader>vv", ':vsplit<CR>')     -- split vertically
 vim.keymap.set("n", "<leader>vh", ':split<CR>')      -- split horizontally
+
+-- Scroll other window
+local opts = { noremap = true, silent = true }
+vim.keymap.set('n', '<M-j>', '<C-w>w<C-e><C-w>w', opts)
+vim.keymap.set('n', '<M-k>', '<C-w>w<C-y><C-w>w', opts)
+vim.keymap.set('n', '<M-d>', '<C-w>w<C-d><C-w>w', opts)
+vim.keymap.set('n', '<M-u>', '<C-w>w<C-u><C-w>w', opts)
+vim.keymap.set('n', '<M-f>', '<C-w>w<C-f><C-w>w', opts)
+vim.keymap.set('n', '<M-b>', '<C-w>w<C-b><C-w>w', opts)
 
 -- TAB WINDOW
 vim.keymap.set("n", "<leader>s", ':tabnext<CR>')     -- go to next tab
@@ -48,7 +58,17 @@ vim.keymap.set("n", "<leader>a", ':tabprevious<CR>') -- go to previous tab
 vim.keymap.set("i", "jk", "<Esc>")       -- map <jk> to <Esc>
 vim.keymap.set("t", "jk", "<C-\\><C-n>") -- map <jk> to <Esc>
 
+-- LSP
+vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic" })
+vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next diagnostic" })
+
+vim.keymap.set("n", "[e", vim.diagnostic.open_float, { desc = "Show error in float window" })
+vim.keymap.set("n", "]e", vim.diagnostic.setloclist, { desc = "Add error to location list" })
+
 -- MISC
+-- prevent mouse visual click selection
+vim.keymap.set('n', '<LeftDrag>', '<LeftMouse>', { noremap = true })
+
 -- open new buffer
 vim.keymap.set("n", "<leader>n", ':enew<CR>')
 

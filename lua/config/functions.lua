@@ -1,4 +1,4 @@
-function CheckLsp(bufnr)
+function HorCheckLsp(bufnr)
   -- Use current buffer if none provided
   local buffer = bufnr or vim.api.nvim_get_current_buf()
 
@@ -19,8 +19,24 @@ function CheckLsp(bufnr)
   return clients[1].server_capabilities
 end
 
-function DisableLSP()
+function HorShowErrorFloatLSP()
+  vim.diagnostic.open_float()
+end
+
+function HorShowErrorListLSP()
+  vim.diagnostic.setloclist()
+end
+
+function HorEnableLSP()
+  vim.diagnostic.enable()
+end
+
+function HorDisableLSP()
   vim.diagnostic.disable()
+end
+
+function HorHideErrorLSP()
+  vim.diagnostic.hide()
 end
 
 -- function CheckFormatter(bufnr)
@@ -44,7 +60,7 @@ end
   -- return M.resolve_formatters(formatters, bufnr, false, false)
 -- end
 
-function Colort(color)
+function HorColort(color)
   local success = pcall(function()
     vim.cmd.colorscheme(color)
   end)
@@ -63,13 +79,13 @@ function Colort(color)
 end
 
 -- manually format buffer with available LSP
-function FormatLSP()
+function HorFormatLSP()
   vim.lsp.buf.format({
     async = false,
     timeout_ms = 10000,
   })
 end
 
-function FormatHOR()
+function HorFormatter()
   require("conform").format()
 end

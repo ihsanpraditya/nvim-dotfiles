@@ -6,51 +6,57 @@
 -- NUMBER
 -- TAB
 -- UNDO/REDO
+-- BACKUP
 -- SEARCHING
--- COLORCOLUMN
 -- CONCEAL
 -- FOLDING
 -- UPDATETIME
+-- COLORCOLUMN
 -- COMPLETION
 -- DIRECTORY MODE
 -- PROVIDER
 -- TERMGUICOLORS
 -- COLOR
+-- NEOVIM FUNCTION
+-- COLOR LIST
 -- NEOVIDE
 ---------------------------
-local op = vim.o
 
 -- MOUSE
-op.mouse = "a"
-op.mousemoveevent = true
+vim.o.mouse = "a"
+vim.o.mousemoveevent = true
+
+-- TEXT
+vim.o.textwidth = 80
 
 -- NUMBER
-op.number = true
-op.relativenumber = true
-op.wrap = false
+vim.o.number = true
+vim.o.relativenumber = true
+vim.o.wrap = false
 
 -- TAB
 -- always insert spaces
-op.tabstop = 2
-op.shiftwidth = 2
-op.expandtab = true
-
-op.swapfile = true
-op.backup = true
+vim.o.tabstop = 2
+vim.o.shiftwidth = 2
+vim.o.expandtab = true
 
 -- UNDO / REDO
--- op.undodir = os.getenv("HOME") .. "/.vim/undodir"
-op.undofile = true -- undo history persists although exiting the buffer.
+-- vim.o.undodir = os.getenv("HOME") .. "/.vim/undodir"
+vim.o.undofile = true -- undo history persists although exiting the buffer.
+
+-- BACKUP
+vim.o.backup = false
+vim.o.swapfile = false
 
 -- SEARCHING
-op.incsearch = true
-op.hlsearch = true
-op.ignorecase = true
-op.smartcase = true
-op.cursorline = true
+vim.o.incsearch = true
+vim.o.hlsearch = true
+vim.o.ignorecase = true
+vim.o.smartcase = true
+vim.o.cursorline = true
 
-op.scrolloff = 8
-op.signcolumn = "yes"
+vim.o.scrolloff = 8
+vim.o.signcolumn = "yes"
 vim.opt.isfname:append("@-@")
 
 -- CONCEAL
@@ -61,14 +67,19 @@ vim.opt.concealcursor = ''
 vim.g.markdown_folding = 1
 vim.g.org_folding = 1
 vim.g.org_indent_mode = 0
+vim.o.foldmethod = 'indent'
 
 -- UPDATETIME
-op.updatetime = 50
+vim.o.updatetime = 50
 
--- op.colorcolumn = "80" -- show vertical line in column 80
+-- COLORCOLUMN
+-- vim.o.colorcolumn = "80" -- show vertical line in column 80
 
 -- COMPLETION
 -- vim.opt.omnifunc = 'syntaxcomplete#Complete'
+vim.o.wildignorecase = true -- for file completion
+vim.o.wildignore = '*~'
+vim.opt.complete:remove('t') -- disable tag in i_CTRL-N/P
 
 -- DIRECTORY MODE
 vim.g.netrw_bufsettings = "noma nomod nonu nobl nowrap ro rnu"
@@ -95,7 +106,8 @@ else
   vim.opt.background = "dark"
 end
 
-Colort("default")
+-- NEOVIM FUNCTION
+HorColort("default")
 ----- light color -----
 -- Blue (but set bg to dark, wkwk)
 -- delek 
@@ -104,6 +116,7 @@ Colort("default")
 -- shine(dont use)
 -- zellner 
 
+-- COLOR LIST
 ----- dark color -----
 -- Andromeda
 -- DarkBlue

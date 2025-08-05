@@ -18,6 +18,7 @@
 -- conform: formatter engine
 -- orgmode
 -- pomodoro
+-- buffer deletion
 return {
   {
     "nvim-tree/nvim-tree.lua",
@@ -38,7 +39,7 @@ return {
       end
       require("nvim-tree").setup {
         sort = { sorter = "case_sensitive", },
-        view = { width = 30, },
+        view = { relativenumber = true },
         renderer = { group_empty = true, },
         filters = { dotfiles = true, },
         on_attach = my_on_attach                                       -- keymaps in tree view
@@ -375,6 +376,16 @@ return {
         }
       }
     },
+  },
+  {
+    "ojroques/nvim-bufdel",
+    cmd = "BufDel",
+    keys = {
+      {
+        "<leader>C",
+        "<CMD>BufDel<CR>"
+      }
+    }
   }
   -- { "michaelb/sniprun" },
   -- { "dhruvasagar/vim-table-mode" }
