@@ -1,6 +1,10 @@
 return {
-  cmd = { 'intelephense', '--stdio' },
-  filetypes = { 'php' },
+  cmd = {
+    'intelephense',
+    '--stdio',
+    '--log-file', '/tmp/intelephense.log',
+  },
+  filetypes = { 'php', 'blade', 'php_only' },
   root_markers = { 'composer.json', '.git' },
   settings = {
     intelephense = {
@@ -9,14 +13,28 @@ return {
         associations = { '*.php', '*.phtml', '*.blade.php' }
       },
       completion = {
-        insertUseDeclaration = true
+        enable = true
       },
       format = {
         enable = true
       },
+      environment = {
+        includePaths = {
+            vim.fs.joinpath(vim.fn.getcwd(), '_ide_helper.php')
+        }
+      },
+      stubs = {
+        'standard',
+        'Core',
+        'date',
+        'phpunit',
+        'laravel',
+        'pcre'
+      },
       diagnostics = {
         enable = true,
-        run = 'onType' -- | onSave
+        run = 'onSave', -- onType | onSave
+        undefinedMethods = false
       }
     }
   }

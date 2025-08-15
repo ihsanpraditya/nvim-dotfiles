@@ -82,6 +82,10 @@ vim.keymap.set("n", "<leader>O", 'O<ESC>')
 -- insert down blank line
 vim.keymap.set("n", "<leader>o", 'o<ESC>')
 
+-- Improve command-line history navigation
+vim.keymap.set('c', '<C-p>', '<Up>', {  noremap = true, desc = 'Prev matching command' })
+vim.keymap.set('c', '<C-n>', '<Down>', {  noremap = true, desc = 'Next matching command' })
+
 -- clever tab indent
 -- see: insert.txt +686
 -- commented because it triggered event after whitespace if the line is not empty
