@@ -33,8 +33,8 @@ return {
       },
       diagnostics = {
         enable = true,
-        run = 'onSave', -- onType | onSave
-        undefinedMethods = false
+        run = 'onType', -- onType | onSave
+        -- undefinedMethods = false
       }
     }
   }

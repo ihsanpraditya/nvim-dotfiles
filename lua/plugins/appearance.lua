@@ -86,4 +86,6 @@ return {
   { 'folke/tokyonight.nvim' },
   { 'nyoom-engineering/oxocarbon.nvim' },
   { 'dasupradyumna/midnight.nvim' },
+  {'loctvl842/monokai-pro.nvim'},
+  {'wuelnerdotexe/vim-enfocado'},
 }

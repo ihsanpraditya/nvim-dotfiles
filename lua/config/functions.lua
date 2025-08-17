@@ -3,7 +3,7 @@ function HorCheckLsp(bufnr)
   local buffer = bufnr or vim.api.nvim_get_current_buf()
 
   -- Get LSP clients attached to the buffer
-  local clients = vim.lsp.get_active_clients({ bufnr = buffer })
+  local clients = vim.lsp.get_clients({ bufnr = buffer })
 
   if #clients == 0 then
     print("No LSP clients attached to this buffer")
