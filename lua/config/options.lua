@@ -5,6 +5,7 @@
 -- MOUSE
 -- NUMBER
 -- TAB
+-- MATCHIT
 -- UNDO/REDO
 -- BACKUP
 -- SEARCHING
@@ -39,6 +40,9 @@ vim.o.wrap = false
 vim.o.tabstop = 2
 vim.o.shiftwidth = 2
 vim.o.expandtab = true
+
+-- MATCHIT
+vim.g.loaded_matchit = 1
 
 -- UNDO / REDO
 -- vim.o.undodir = os.getenv("HOME") .. "/.vim/undodir"

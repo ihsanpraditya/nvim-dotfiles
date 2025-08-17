@@ -70,4 +70,12 @@ return {
     },
     lazy = false,
   },
+  {
+    'andymass/vim-matchup',
+    opts = {
+      treesitter = {
+        stopline = 500,
+      }
+    }
+  },
 }
