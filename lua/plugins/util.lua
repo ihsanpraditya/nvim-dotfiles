@@ -21,55 +21,6 @@
 -- buffer deletion
 return {
   {
-    {
-      "neovim/nvim-lspconfig",
-      event = { "BufNewFile" },
-      dependencies = {
-        "hrsh7th/cmp-nvim-lsp",
-        { "antosha417/nvim-lsp-file-operations", config = true },
-      },
-      config = function()
-        local lspconfig = require("lspconfig")
-        local cmp_nvim_lsp = require("cmp_nvim_lsp")
-        local keymap = vim.keymap
-        local opts = { noremap = true, silent = true }
-        local on_attach = function(client, bufnr)
-          opts.buffer = bufnr
-
-          opts.desc = "Show LSP definitions"
-          keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts)
-
-          opts.desc = "Go to declaration"
-          keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
-        end
-
-        local capabilities = cmp_nvim_lsp.default_capabilities()
-        local signs = { Error = "E ", Warn = "W ", Hint = "H ", Info = "I "}
-        for type, icon in pairs(signs) do
-          local hl = "DiagnosticSign" .. type
-          vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-        end
-
-        lspconfig["astro_ls"].setup({
-          capabilities = capabilities,
-          on_attach = on_attach,
-          init_options = {
-            typescript = {
-              tsdk = '/home/sanArch/.nvm/versions/node/v22.11.0/lib/node_modules/typescript/lib'
-            },
-          },
-        })
-        lspconfig["lua_ls"].setup({
-          capabilities = capabilities,
-          on_attach = on_attach,
-          settings = {
-            diagnostics = {
-              globals = { 'vim' }
-            }
-          }
-        })
-      end,
-    },
     "nvim-tree/nvim-tree.lua",
     config = function()
       local function my_on_attach(bufnr)

@@ -8,7 +8,6 @@
 -- SPLIT
 -- TAB WINDOW
 -- <ESC>
--- LSP
 -- MISC
 -- NEOVIDE
 ---------------------------
@@ -56,13 +55,6 @@ vim.keymap.set("n", "<leader>a", ':tabprevious<CR>') -- go to previous tab
 -- <ESC>
 vim.keymap.set("i", "jk", "<Esc>")       -- map <jk> to <Esc>
 vim.keymap.set("t", "jk", "<C-\\><C-n>") -- map <jk> to <Esc>
-
--- LSP
-vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic" })
-vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next diagnostic" })
-
-vim.keymap.set("n", "[e", vim.diagnostic.open_float, { desc = "Show error in float window" })
-vim.keymap.set("n", "]e", vim.diagnostic.setloclist, { desc = "Add error to location list" })
 
 -- MISC
 -- prevent mouse visual click selection
