@@ -82,7 +82,18 @@ vim.o.updatetime = 50
 -- COMPLETION
 -- vim.opt.omnifunc = 'syntaxcomplete#Complete'
 vim.o.wildignorecase = true -- for file completion
-vim.o.wildignore = '*~'
+vim.opt.wildignore:append {
+  '*~',
+  '*.log',
+  '*.tmp',
+  '/tmp/*',
+  '/temp/*',
+  '**/node_modules/**',
+  '**/.git/**',
+  '*.swp',
+  '*.bak',
+  'tags'
+}
 vim.opt.complete:remove('t') -- disable tag in i_CTRL-N/P
 
 -- DIRECTORY MODE

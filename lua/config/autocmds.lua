@@ -19,4 +19,28 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 })
 
 -- Disable folding in Telescope's result window.
-vim.api.nvim_create_autocmd("FileType", { pattern = "TelescopeResults", command = [[setlocal nofoldenable]] })
+-- vim.api.nvim_create_autocmd("FileType", { pattern = "TelescopeResults", command = [[setlocal nofoldenable]] })
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "TelescopeResults" },
+  callback = function()
+    vim.opt_local.foldenable = false
+  end
+})
+
+-- these codes below are from https://github.com/nvim-neo-tree/neo-tree.nvim/discussions/1676#discussioncomment-12068158
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = {'neo-tree-preview', 'neo-tree'},
+  callback = function(args)
+    vim.api.nvim_create_autocmd('BufWinEnter', {
+      buffer = args.buf,
+      once = true,
+      callback = function() 
+        vim.wo[0].foldmethod = 'manual' 
+        vim.opt_local.foldenable = false
+        vim.opt_local.number = true
+        vim.opt_local.relativenumber = true
+      end,
+    })
+  end,
+})

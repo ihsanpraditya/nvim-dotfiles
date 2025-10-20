@@ -1,13 +1,37 @@
 return {
   { "tpope/vim-fugitive" },
   { "tpope/vim-rhubarb" },
-  { "lewis6991/gitsigns.nvim" },
   { "sindrets/diffview.nvim" },
   { "ledger/vim-ledger" },
   { "godlygeek/tabular" },
   { "RRethy/vim-illuminate" },
   { "tpope/vim-sleuth" }, -- Heuristically set buffer options
   { "mg979/vim-visual-multi", branch = "master" },
+  { 
+    "lewis6991/gitsigns.nvim",
+    event = 'BufReadPre',
+    config = function()
+      require('gitsigns').setup({
+        on_attach = function(bufnr)
+        local gs = package.loaded.gitsigns
+
+        -- Keybindings
+        local function map(mode, l, r, opts)
+          opts = opts or {}
+          opts.buffer = bufnr
+          vim.keymap.set(mode, l, r, opts)
+        end
+
+        map('n', ']h', gs.next_hunk)
+        map('n', '[h', gs.prev_hunk)
+        map('n', '<leader>hs', gs.stage_hunk)
+        map('n', '<leader>hr', gs.reset_hunk)
+        map('v', '<leader>hs', gs.stage_hunk)
+        map('v', '<leader>hr', gs.reset_hunk)
+      end,
+      })
+    end,
+  },
   {
     "lukas-reineke/indent-blankline.nvim",
     main = "ibl",

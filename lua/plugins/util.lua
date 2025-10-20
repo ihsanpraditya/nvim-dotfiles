@@ -1,5 +1,6 @@
 -- index
--- nvim-tree: file manager
+-- neo-tree
+-- nvim-tree: file manager -- commented
 -- dotenv
 -- treesitter
 -- mason: external tools manager
@@ -12,42 +13,71 @@
 -- trouble: diagnostics list
 -- Alpha: dashboard
 -- neominimap
--- laravel.nvim
+-- laravel.nvim -- commented
 -- blade-nav.nvim
--- vim-blade
+-- vim-blade -- commented
 -- conform: formatter engine
 -- orgmode
 -- pomodoro
 -- buffer deletion
 return {
   {
-    "nvim-tree/nvim-tree.lua",
-    config = function()
-      local function my_on_attach(bufnr)
-        local api = require "nvim-tree.api"
-
-        local function opts(desc)
-          return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
-        end
-
-        -- default mappings
-        api.config.mappings.default_on_attach(bufnr)
-
-        -- custom mappings
-        vim.keymap.set('n', '<C-t>', api.tree.change_root_to_parent, opts('Up'))
-        vim.keymap.set('n', '?', api.tree.toggle_help, opts('Help'))
-      end
-      require("nvim-tree").setup {
-        sort = { sorter = "case_sensitive", },
-        view = { relativenumber = true },
-        renderer = { group_empty = true, },
-        filters = { dotfiles = true, },
-        on_attach = my_on_attach                                       -- keymaps in tree view
-      }
-      vim.keymap.set("n", "<leader>t", ':NvimTreeToggle<CR>')          -- toggle file explorer
-      vim.keymap.set("n", "<leader>y", ':NvimTreeFindFileToggle!<CR>') -- toggle file explorer
-    end
+    "nvim-neo-tree/neo-tree.nvim",
+    branch = "v3.x",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "MunifTanjim/nui.nvim",
+      "nvim-tree/nvim-web-devicons", -- optional, but recommended
+    },
+    cmd = { "Neotree" },
+    keys = {
+      { "<Leader>t", "<Cmd>Neotree toggle<CR>" }, -- change or remove this line if relevant.
+      { "<Leader>g", "<Cmd>Neotree focus git_status<CR>" }, -- change or remove this line if relevant.
+      { "<Leader>y", "<Cmd>Neotree filesystem reveal<CR>" }, -- change or remove this line if relevant.
+    },
+    lazy = false, -- neo-tree will lazily load itself
+    ---@module 'neo-tree'
+    ---@type neotree.Config
+    opts = {}
   },
+  {
+    "antosha417/nvim-lsp-file-operations",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-neo-tree/neo-tree.nvim", -- makes sure that this loads after Neo-tree.
+    },
+    config = function()
+      require("lsp-file-operations").setup()
+    end,
+  },
+  -- {
+  --   "nvim-tree/nvim-tree.lua",
+  --   config = function()
+  --     local function my_on_attach(bufnr)
+  --       local api = require "nvim-tree.api"
+  --
+  --       local function opts(desc)
+  --         return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+  --       end
+  --
+  --       -- default mappings
+  --       api.config.mappings.default_on_attach(bufnr)
+  --
+  --       -- custom mappings
+  --       vim.keymap.set('n', '<C-t>', api.tree.change_root_to_parent, opts('Up'))
+  --       vim.keymap.set('n', '?', api.tree.toggle_help, opts('Help'))
+  --     end
+  --     require("nvim-tree").setup {
+  --       sort = { sorter = "case_sensitive", },
+  --       view = { relativenumber = true },
+  --       renderer = { group_empty = true, },
+  --       filters = { dotfiles = true, },
+  --       on_attach = my_on_attach                                       -- keymaps in tree view
+  --     }
+  --     vim.keymap.set("n", "<leader>t", ':NvimTreeToggle<CR>')          -- toggle file explorer
+  --     vim.keymap.set("n", "<leader>y", ':NvimTreeFindFileToggle!<CR>') -- toggle file explorer
+  --   end
+  -- },
   {
     "ellisonleao/dotenv.nvim",
     opts = {
@@ -300,33 +330,77 @@ return {
       }
     end,
   },
-  {
-    "adalessa/laravel.nvim",
-    dependencies = {
-      "tpope/vim-dotenv",
-      "nvim-telescope/telescope.nvim",
-      "MunifTanjim/nui.nvim",
-      "kevinhwang91/promise-async",
-    },
-    cmd = { "Laravel" },
-    keys = {
-      { "<leader>la", ":Laravel artisan<cr>" },
-      { "<leader>lr", ":Laravel routes<cr>" },
-      { "<leader>lm", ":Laravel related<cr>" },
-    },
-    event = { "VeryLazy" },
-    opts = {},
-    config = true,
-  },
+  -- {
+  --   "adalessa/laravel.nvim",
+  --   dependencies = {
+  --     "tpope/vim-dotenv",
+  --     "nvim-telescope/telescope.nvim",
+  --     "MunifTanjim/nui.nvim",
+  --     "nvim-lua/plenary.nvim",
+  --     -- "nvim-neotest/nvim-nio",
+  --     "kevinhwang91/promise-async",
+  --   },
+  --   cmd = { "Laravel" },
+  --   keys = {
+  --     -- { "<leader>la", ":Laravel artisan<cr>" },
+  --     -- { "<leader>lr", ":Laravel routes<cr>" },
+  --     -- { "<leader>lm", ":Laravel related<cr>" },
+  --     { "<leader>ll", function() Laravel.pickers.laravel() end,              desc = "Laravel: Open Laravel Picker" },
+  --     { "<c-g>",      function() Laravel.commands.run("view:finder") end,    desc = "Laravel: Open View Finder" },
+  --     { "<leader>la", function() Laravel.pickers.artisan() end,              desc = "Laravel: Open Artisan Picker" },
+  --     { "<leader>lt", function() Laravel.commands.run("actions") end,        desc = "Laravel: Open Actions Picker" },
+  --     { "<leader>lr", function() Laravel.pickers.routes() end,               desc = "Laravel: Open Routes Picker" },
+  --     { "<leader>lh", function() Laravel.run("artisan docs") end,            desc = "Laravel: Open Documentation" },
+  --     { "<leader>lm", function() Laravel.pickers.make() end,                 desc = "Laravel: Open Make Picker" },
+  --     { "<leader>lc", function() Laravel.pickers.commands() end,             desc = "Laravel: Open Commands Picker" },
+  --     { "<leader>lo", function() Laravel.pickers.resources() end,            desc = "Laravel: Open Resources Picker" },
+  --     { "<leader>lp", function() Laravel.commands.run("command_center") end, desc = "Laravel: Open Command Center" },
+  --     {
+  --       "gf",
+  --       function()
+  --         local ok, res = pcall(function()
+  --           if Laravel.app("gf").cursorOnResource() then
+  --             return "<cmd>lua Laravel.commands.run('gf')<cr>"
+  --           end
+  --         end)
+  --         if not ok or not res then
+  --           return "gf"
+  --         end
+  --         return res
+  --       end,
+  --       expr = true,
+  --       noremap = true,
+  --     },
+  --   },
+  --   event = { "VeryLazy" },
+  --   opts = {
+  --     lsp_server = "intelephense", -- "phpactor | intelephense"
+  --     features = {
+  --       pickers = {
+  --         provider = "telescope", -- "snacks | telescope | fzf-lua | ui-select"
+  --       },
+  --     },
+  --   },
+  --   -- config = true,
+  --   -- config = function()
+  --     -- vim.api.nvim_create_user_command('Laravel', function()
+  --     --   require('laravel').pickers().menu()
+  --     -- end, {})
+  --     -- require('laravel')
+  --   -- end,
+  -- },
   {
     'ricardoramirezr/blade-nav.nvim',
+    dependencies = { -- totally optional
+        'hrsh7th/nvim-cmp',
+    },
     ft = { 'blade', 'php' }, -- optional, improves startup time
     opts = {
       -- This applies for nvim-cmp and coq, for blink refer to the configuration of this plugin
       close_tag_on_complete = true, -- default: true
     },
   },
-  { "jwalton512/vim-blade" },
+  -- { "jwalton512/vim-blade" },
   {
     'stevearc/conform.nvim', -- Lightweight yet powerful formatter plugin for Neovim
     opts = function ()
