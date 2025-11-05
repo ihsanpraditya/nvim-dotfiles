@@ -38,8 +38,6 @@ vim.api.nvim_create_autocmd('FileType', {
       callback = function() 
         vim.wo[0].foldmethod = 'manual' 
         vim.opt_local.foldenable = false
-        vim.opt_local.number = true
-        vim.opt_local.relativenumber = true
       end,
     })
   end,

@@ -38,7 +38,16 @@ return {
     lazy = false, -- neo-tree will lazily load itself
     ---@module 'neo-tree'
     ---@type neotree.Config
-    opts = {}
+    opts = {
+      event_handlers = {
+        {
+          event = "neo_tree_buffer_enter",
+          handler = function()
+            vim.opt_local.relativenumber = true
+          end,
+        }
+      },
+    }
   },
   {
     "antosha417/nvim-lsp-file-operations",

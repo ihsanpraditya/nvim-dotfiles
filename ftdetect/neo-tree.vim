@@ -1,1 +1,1 @@
-autocmd FileType neo-tree-preview setlocal nofoldenable
+autocmd FileType neo-tree-preview setlocal nofoldenable number relativenumber
