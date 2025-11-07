@@ -102,6 +102,8 @@ return {
         filetypes = { 'html', 'typescriptreact', 'javascriptreact', 'css', 'sass', 'scss', 'less', 'svelte' },
       })
 
+      vim.lsp.config('gopls', {})
+
       -- docs: https://github.com/bmewburn/intelephense-docs/blob/master/installation.md
       vim.lsp.config('intelephense', {
         filetypes = { 'php', 'blade', 'php_only' },
@@ -220,4 +222,22 @@ return {
 
     end,
   },
+  {
+    'nvimtools/none-ls.nvim',
+    config = function()
+      local null_ls = require("null-ls")
+
+      null_ls.setup({
+        sources = {
+          null_ls.builtins.formatting.stylua,
+          null_ls.builtins.formatting.blade_formatter,
+          null_ls.builtins.formatting.goimports,
+          null_ls.builtins.formatting.phpcsfixer,
+
+          null_ls.builtins.diagnostics.phpcs,
+          null_ls.builtins.diagnostics.staticcheck,
+        },
+      })
+    end
+  }
 }

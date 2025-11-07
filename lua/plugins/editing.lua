@@ -1,3 +1,14 @@
+-- INDEX
+-- fugitive
+-- rhubarb
+-- diffview
+-- ledger
+-- tabular
+-- illuminate
+-- sleuth
+-- visual-multi
+-- gitsigns
+--
 return {
   { "tpope/vim-fugitive" },
   { "tpope/vim-rhubarb" },
